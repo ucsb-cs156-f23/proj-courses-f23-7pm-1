@@ -67,7 +67,8 @@ export default function SectionsTable({ sections }) {
     },
     {
       Header: "Enrolled",
-      accessor: (row) => convertToFraction(row.section.enrolledTotal, row.section.maxEnroll),
+      accessor: (row) =>
+        convertToFraction(row.section.enrolledTotal, row.section.maxEnroll),
       disableGroupBy: true,
       id: "enrolled",
 
