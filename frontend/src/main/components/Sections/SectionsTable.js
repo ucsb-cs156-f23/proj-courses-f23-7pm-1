@@ -8,6 +8,9 @@ import {
   formatLocation,
   formatTime,
   isSection,
+  isSectionCancelled,
+  isSectionClosed,
+  isSectionFull,
 } from "main/utils/sectionUtils.js";
 
 function getFirstVal(values) {
@@ -49,9 +52,22 @@ export default function SectionsTable({ sections }) {
       id: "isSection",
     },
     {
+      Header: "Status",
+      accessor: (row) => {
+        if (isSectionCancelled(row.section)) return "CANCELLED";
+        else if (isSectionClosed(row.section)) return "CLOSED";
+        else if (isSectionFull(row.section)) return "FULL";
+        else return "OPEN";
+      },
+      disableGroupBy: true,
+      id: "status",
+
+      aggregate: getFirstVal,
+      Aggregated: ({ cell: { value } }) => `${value}`,
+    },
+    {
       Header: "Enrolled",
-      accessor: (row) =>
-        convertToFraction(row.section.enrolledTotal, row.section.maxEnroll),
+      accessor: (row) => convertToFraction(row.section.enrolledTotal, row.section.maxEnroll),
       disableGroupBy: true,
       id: "enrolled",
 
