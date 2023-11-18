@@ -20,6 +20,9 @@ function SingleQuarterDropdown({
   onChange = null,
   label = "Quarter",
 }) {
+  if (localStorage.length == 0) {
+    localStorage.setItem(controlId, quarters[0].yyyyq);
+  }
   const localSearchQuarter = localStorage.getItem(controlId);
 
   const [quarterState, setQuarterState] = useState(
