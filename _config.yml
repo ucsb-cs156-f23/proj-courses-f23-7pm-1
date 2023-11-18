@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f23/proj-courses-f23-7pm-1
 owner: ucsb-cs156-f23
 repo_name: proj-courses-f23-7pm-1
-pull_requests: [{"author":{"id":"U_kgDOBdDdWA","is_bot":false,"login":"awesomebob35","name":"Joseph Yue"},"headRefName":"jy-PersonalSchedule-bug","number":16,"title":"Bug Fix for Creating Personal Schedule","url":"https://github.com/ucsb-cs156-f23/proj-courses-f23-7pm-1/pull/16"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjMzMjcwMjMy","is_bot":false,"login":"Irreflexive","name":"Carson"},"headRefName":"ck-displaycoursestatus","number":17,"title":"Added course status to Course Search Results","url":"https://github.com/ucsb-cs156-f23/proj-courses-f23-7pm-1/pull/17"},{"author":{"id":"U_kgDOBdDdWA","is_bot":false,"login":"awesomebob35","name":"Joseph Yue"},"headRefName":"jy-PersonalSchedule-bug","number":16,"title":"Bug Fix for Creating Personal Schedule","url":"https://github.com/ucsb-cs156-f23/proj-courses-f23-7pm-1/pull/16"}]
