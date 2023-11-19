@@ -167,6 +167,12 @@ describe("SingleQuarterSelector tests", () => {
       />,
     );
 
-    await waitFor(() => expect(useState).toBeCalledWith("20201"), expect(localStorage.setItem).toBeCalledWith("PersonalScheduleForm-quarter", "20201"));
+    await waitFor(
+      () => expect(useState).toBeCalledWith("20201"),
+      expect(localStorage.setItem).toBeCalledWith(
+        "PersonalScheduleForm-quarter",
+        "20201",
+      ),
+    );
   });
 });
