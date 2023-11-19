@@ -13,6 +13,7 @@ import edu.ucsb.cs156.courses.services.UCSBCurriculumService;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -21,11 +22,12 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+@Slf4j
 @WebMvcTest(value = UCSBCurriculumController.class)
 @Import(SecurityConfig.class)
 @AutoConfigureDataJpa
 public class UCSBCurriculumControllerTests {
-  private final Logger logger = LoggerFactory.getLogger(UCSBCurriculumControllerTests.class);
+  
   private ObjectMapper mapper = new ObjectMapper();
 
   @MockBean UserRepository userRepository;
