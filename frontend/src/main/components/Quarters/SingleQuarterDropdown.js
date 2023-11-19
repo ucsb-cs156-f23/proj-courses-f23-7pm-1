@@ -20,11 +20,11 @@ function SingleQuarterDropdown({
   onChange = null,
   label = "Quarter",
 }) {
-  // Stryker disable all : not sure how to test/mock local storage
+  
   if (localStorage.getItem("PersonalScheduleForm-quarter") == null) {
     localStorage.setItem("PersonalScheduleForm-quarter", quarters[0].yyyyq);
   }
-  // Stryker enable all
+  
   const localSearchQuarter = localStorage.getItem(controlId);
 
   const [quarterState, setQuarterState] = useState(
