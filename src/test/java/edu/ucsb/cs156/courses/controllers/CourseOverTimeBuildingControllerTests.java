@@ -31,7 +31,8 @@ import org.springframework.test.web.servlet.MvcResult;
 @Import(SecurityConfig.class)
 @AutoConfigureDataJpa
 public class CourseOverTimeBuildingControllerTests {
-  @Slf4fj
+  private final Logger logger =
+      LoggerFactory.getLogger(CourseOverTimeBuildingControllerTests.class);
   private ObjectMapper mapper = new ObjectMapper();
 
   @Autowired private MockMvc mockMvc;

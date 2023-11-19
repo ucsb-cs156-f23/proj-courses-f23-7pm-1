@@ -25,7 +25,7 @@ import org.springframework.test.web.servlet.MvcResult;
 @Import(SecurityConfig.class)
 @AutoConfigureDataJpa
 public class UCSBCurriculumControllerTests {
-  @Slf4fj
+  private final Logger logger = LoggerFactory.getLogger(UCSBCurriculumControllerTests.class);
   private ObjectMapper mapper = new ObjectMapper();
 
   @MockBean UserRepository userRepository;

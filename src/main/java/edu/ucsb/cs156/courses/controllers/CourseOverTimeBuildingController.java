@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/public/courseovertime")
 public class CourseOverTimeBuildingController {
 
-  @Slf4fj
+  private final Logger logger = LoggerFactory.getLogger(CourseOverTimeBuildingController.class);
 
   private ObjectMapper mapper = new ObjectMapper();
 
