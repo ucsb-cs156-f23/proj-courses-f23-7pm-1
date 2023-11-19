@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/sections")
 public class UCSBSectionsController {
-  private final Logger logger = LoggerFactory.getLogger(UCSBSectionsController.class);
+  @Slf4fj
 
   private ObjectMapper mapper = new ObjectMapper();
 

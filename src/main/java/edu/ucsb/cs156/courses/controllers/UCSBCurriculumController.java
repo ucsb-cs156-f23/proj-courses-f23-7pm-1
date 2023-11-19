@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/public")
 public class UCSBCurriculumController {
-  private final Logger logger = LoggerFactory.getLogger(UCSBCurriculumController.class);
+  @Slf4fj
 
   private ObjectMapper mapper = new ObjectMapper();
 
