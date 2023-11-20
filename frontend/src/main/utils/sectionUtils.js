@@ -77,6 +77,21 @@ export const formatInstructors = (instructorArray) => {
   }
 };
 
+// Takes an entire section row and returns whether the section is full
+export const isSectionFull = (section) => {
+  return section.enrolledTotal >= section.maxEnroll;
+};
+
+// Takes an entire section row and returns whether the section is closed
+export const isSectionClosed = (section) => {
+  return section.classClosed !== null;
+};
+
+// Takes an entire section row and returns whether the section is cancelled
+export const isSectionCancelled = (section) => {
+  return section.courseCancelled !== null;
+};
+
 export const isSection = (en1) => {
   return en1.substring(2) !== "00";
 };
