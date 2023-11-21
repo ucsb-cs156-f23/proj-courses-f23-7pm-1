@@ -126,6 +126,21 @@ export default function SectionsOverTimeTable({ sections }) {
       aggregate: getFirstVal,
       Aggregated: ({ cell: { value } }) => `${value}`,
     },
+    {
+      Header: "Info",
+      accessor: (row) => row,
+      disableGroupBy: true,
+
+      aggregate: getFirstVal,
+      Aggregated: ({ cell: { value } }) => (
+        <Button
+          size="sm"
+          href={`/course/details/${value.courseInfo.quarter}/${value.section.enrollCode}`}
+        >
+          {"ⓘ"}
+        </Button>
+      )
+    },
   ];
 
   const testid = "SectionsOverTimeTable";
