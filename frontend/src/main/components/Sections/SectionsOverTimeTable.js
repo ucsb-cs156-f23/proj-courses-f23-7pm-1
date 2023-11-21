@@ -12,6 +12,7 @@ import {
   isSectionClosed,
   isSectionFull,
 } from "main/utils/sectionUtils.js";
+import { Button } from "react-bootstrap";
 
 function getFirstVal(values) {
   return values[0];
