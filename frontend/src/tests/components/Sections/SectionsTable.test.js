@@ -44,6 +44,7 @@ describe("Section tests", () => {
       "Time",
       "Instructor",
       "Enroll Code",
+      "Info",
     ];
     const expectedFields = [
       "quarter",
@@ -56,6 +57,7 @@ describe("Section tests", () => {
       "time",
       "instructor",
       "section.enrollCode",
+      "info",
     ];
     const testId = "SectionsTable";
 
@@ -95,6 +97,9 @@ describe("Section tests", () => {
     expect(
       screen.getByTestId(`${testId}-cell-row-2-col-instructor`),
     ).toHaveTextContent("YUNG A S");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-info`).children[0]
+    ).toHaveTextContent("ⓘ");
   });
 
   test("Has the expected column headers and content", async () => {
@@ -117,6 +122,7 @@ describe("Section tests", () => {
       "Time",
       "Instructor",
       "Enroll Code",
+      "Info",
     ];
     const expectedFields = [
       "quarter",
@@ -129,6 +135,7 @@ describe("Section tests", () => {
       "time",
       "instructor",
       "section.enrollCode",
+      "info",
     ];
     const testId = "SectionsTable";
 
@@ -171,6 +178,12 @@ describe("Section tests", () => {
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-section.enrollCode`),
     ).toHaveTextContent("12583");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-info`).children[0]
+    ).toHaveTextContent("ⓘ");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-info`).children[0].href
+    ).toMatch(/\/course\/details\/20221\/12583$/);
   });
 
   test("Correctly groups separate lectures of the same class", async () => {

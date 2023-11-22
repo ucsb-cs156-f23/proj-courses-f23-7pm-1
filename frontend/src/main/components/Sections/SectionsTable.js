@@ -124,6 +124,7 @@ export default function SectionsTable({ sections }) {
       Header: "Info",
       accessor: (row) => `/course/details/${row.courseInfo.quarter}/${row.section.enrollCode}`,
       disableGroupBy: true,
+      id: "info",
 
       aggregate: getFirstVal,
       Cell: ({ cell: { value } }) => (
@@ -132,7 +133,7 @@ export default function SectionsTable({ sections }) {
           size="sm"
           href={value}
         >
-          {"ⓘ"}
+          ⓘ
         </Button>
       ),
       Aggregated: ({ cell: { value } }) => (
@@ -141,7 +142,7 @@ export default function SectionsTable({ sections }) {
           size="sm"
           href={value}
         >
-          {"ⓘ"}
+          ⓘ
         </Button>
       )
     },
