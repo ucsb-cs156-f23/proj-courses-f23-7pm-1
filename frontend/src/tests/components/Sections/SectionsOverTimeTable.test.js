@@ -47,7 +47,8 @@ describe("Section tests", () => {
       "Days",
       "Time",
       "Instructor",
-      "Enroll Code",,
+      "Enroll Code",
+      ,
       "Info",
     ];
     const expectedFields = [
@@ -102,7 +103,7 @@ describe("Section tests", () => {
       screen.getByTestId(`${testId}-cell-row-5-col-instructor`),
     ).toHaveTextContent("DANESHAMOOZ J, KILGORE J D, YANG YIFAN");
     expect(
-      screen.getByTestId(`${testId}-cell-row-5-col-info`).children[0]
+      screen.getByTestId(`${testId}-cell-row-5-col-info`).children[0],
     ).toHaveTextContent("ⓘ");
     expect(
       screen.getByTestId(`${testId}-cell-row-5-col-courseInfo.courseId`),
@@ -189,10 +190,10 @@ describe("Section tests", () => {
       screen.getByTestId(`${testId}-cell-row-0-col-section.enrollCode`),
     ).toHaveTextContent("08078");
     expect(
-      screen.getByTestId(`${testId}-cell-row-0-col-info`).children[0]
+      screen.getByTestId(`${testId}-cell-row-0-col-info`).children[0],
     ).toHaveTextContent("ⓘ");
     expect(
-      screen.getByTestId(`${testId}-cell-row-0-col-info`).children[0].href
+      screen.getByTestId(`${testId}-cell-row-0-col-info`).children[0].href,
     ).toMatch(/\/course\/details\/20222\/08078$/);
   });
 

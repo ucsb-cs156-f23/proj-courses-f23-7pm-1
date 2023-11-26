@@ -98,7 +98,7 @@ describe("Section tests", () => {
       screen.getByTestId(`${testId}-cell-row-2-col-instructor`),
     ).toHaveTextContent("YUNG A S");
     expect(
-      screen.getByTestId(`${testId}-cell-row-2-col-info`).children[0]
+      screen.getByTestId(`${testId}-cell-row-2-col-info`).children[0],
     ).toHaveTextContent("ⓘ");
   });
 
@@ -179,10 +179,10 @@ describe("Section tests", () => {
       screen.getByTestId(`${testId}-cell-row-0-col-section.enrollCode`),
     ).toHaveTextContent("12583");
     expect(
-      screen.getByTestId(`${testId}-cell-row-0-col-info`).children[0]
+      screen.getByTestId(`${testId}-cell-row-0-col-info`).children[0],
     ).toHaveTextContent("ⓘ");
     expect(
-      screen.getByTestId(`${testId}-cell-row-0-col-info`).children[0].href
+      screen.getByTestId(`${testId}-cell-row-0-col-info`).children[0].href,
     ).toMatch(/\/course\/details\/20221\/12583$/);
   });
 

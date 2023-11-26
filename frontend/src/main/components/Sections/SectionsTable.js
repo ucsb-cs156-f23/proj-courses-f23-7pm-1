@@ -122,29 +122,22 @@ export default function SectionsTable({ sections }) {
     },
     {
       Header: "Info",
-      accessor: (row) => `/course/details/${row.courseInfo.quarter}/${row.section.enrollCode}`,
+      accessor: (row) =>
+        `/course/details/${row.courseInfo.quarter}/${row.section.enrollCode}`,
       disableGroupBy: true,
       id: "info",
 
       aggregate: getFirstVal,
       Cell: ({ cell: { value } }) => (
-        <Button
-          variant="outline-dark"
-          size="sm"
-          href={value}
-        >
+        <Button variant="outline-dark" size="sm" href={value}>
           ⓘ
         </Button>
       ),
       Aggregated: ({ cell: { value } }) => (
-        <Button
-          variant="outline-light"
-          size="sm"
-          href={value}
-        >
+        <Button variant="outline-light" size="sm" href={value}>
           ⓘ
         </Button>
-      )
+      ),
     },
   ];
 
