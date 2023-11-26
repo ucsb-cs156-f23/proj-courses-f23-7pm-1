@@ -48,7 +48,6 @@ describe("Section tests", () => {
       "Time",
       "Instructor",
       "Enroll Code",
-      ,
       "Info",
     ];
     const expectedFields = [
