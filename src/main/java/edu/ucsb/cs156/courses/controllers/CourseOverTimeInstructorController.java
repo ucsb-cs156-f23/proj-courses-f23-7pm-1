@@ -65,7 +65,7 @@ public class CourseOverTimeInstructorController {
               startQtr, endQtr, "^" + instructor.toUpperCase(), "^(Teaching and in charge)");
     } else {
       courseResults =
-          convertedSectionCollection.findByQuarterRangeAndInstructor(startQtr, endQtr, "^", "^.*");
+          convertedSectionCollection.findByQuarterRangeAndInstructor(startQtr, endQtr, "^" + instructor.toUpperCase(), "^.*");
     }
     String body = mapper.writeValueAsString(courseResults);
     return ResponseEntity.ok().body(body);

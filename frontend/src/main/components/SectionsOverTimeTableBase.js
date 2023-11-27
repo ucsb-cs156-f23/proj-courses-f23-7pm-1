@@ -74,12 +74,9 @@ export default function SectionsOverTimeTableBase({
                               {...row.getToggleRowExpandedProps()}
                               data-testid={`${testid}-cell-row-${cell.row.index}-col-${cell.column.id}-expand-symbols`}
                             >
-                              {row.isExpanded ? "➖ " : "➕ "}
                             </span>{" "}
                             {cell.render("Cell")}
                           </>
-                        ) : cell.isAggregated ? (
-                          cell.render("Aggregated")
                         ) : (
                           cell.render("Cell")
                         )}
