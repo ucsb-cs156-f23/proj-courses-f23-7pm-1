@@ -429,7 +429,7 @@ public class UCSBCurriculumServiceTests {
     String expectedResult = "{expectedResult}";
 
     String enrollCd = "04051";
-    String quarter = "20241";
+    String quarter = "";
 
     String expectedParams =
         String.format(
@@ -444,6 +444,32 @@ public class UCSBCurriculumServiceTests {
         .andExpect(header("ucsb-api-version", "1.0"))
         .andExpect(header("ucsb-api-key", apiKey))
         .andRespond(withSuccess(expectedResult, MediaType.APPLICATION_JSON));
+
+    String result = ucs.getFinalExamInfo(quarter, enrollCd);
+
+    assertEquals(expectedResult, result);
+  }
+
+  @Test
+  public void test_getFinalExamInfo_invalid_quarter() throws Exception {
+    String expectedResult = "{\"error\": \"401: Unauthorized\"}";
+
+    String enrollCd = "04051";
+    String quarter = "20241";
+
+    String expectedParams =
+        String.format(
+            "?quarter=%s&enrollCode=%s",
+            quarter, enrollCd);
+    String expectedURL = UCSBCurriculumService.FINALS_ENDPOINT + expectedParams;
+
+    this.mockRestServiceServer
+        .expect(requestTo(expectedURL))
+        .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
+        .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+        .andExpect(header("ucsb-api-version", "1.0"))
+        .andExpect(header("ucsb-api-key", apiKey))
+        .andRespond(withUnauthorizedRequest());
 
     String result = ucs.getFinalExamInfo(quarter, enrollCd);
 

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.ucsb.cs156.courses.documents.ConvertedSection;
 import edu.ucsb.cs156.courses.documents.CoursePage;
+import edu.ucsb.cs156.courses.models.Quarter;
+
 import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -292,6 +294,12 @@ public class UCSBCurriculumService {
     headers.set("ucsb-api-key", this.apiKey);
 
     HttpEntity<String> entity = new HttpEntity<>("body", headers);
+
+    try {
+      quarter = new Quarter(quarter.toUpperCase()).getYYYYQ();
+    } catch (Exception e) {
+      log.info("invalid quarter format: {}", quarter);
+    }
 
     String params =
         String.format(

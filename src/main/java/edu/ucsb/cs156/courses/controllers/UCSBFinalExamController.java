@@ -3,7 +3,6 @@ package edu.ucsb.cs156.courses.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import edu.ucsb.cs156.courses.models.Quarter;
 import edu.ucsb.cs156.courses.repositories.UserRepository;
 import edu.ucsb.cs156.courses.services.UCSBCurriculumService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,9 +29,7 @@ public class UCSBFinalExamController {
       @RequestParam String qxx, @RequestParam String enrollCd)
       throws JsonProcessingException {
 
-    Quarter quarter = new Quarter(qxx.toUpperCase());
-
-    String body = ucsbCurriculumService.getFinalExamInfo(quarter.getYYYYQ(), enrollCd);
+    String body = ucsbCurriculumService.getFinalExamInfo(qxx, enrollCd);
 
     return ResponseEntity.ok().body(body);
   }
