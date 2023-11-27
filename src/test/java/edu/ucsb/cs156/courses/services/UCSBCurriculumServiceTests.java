@@ -423,4 +423,60 @@ public class UCSBCurriculumServiceTests {
     String result = ucs.getAllSections(enrollCode, quarter);
     assertEquals(expectedResult, result);
   }
+
+  @Test
+  public void test_getFinalExamInfo_success() throws Exception {
+    String expectedResult = "{expectedResult}";
+
+    String enrollCd = "04051";
+    String quarter = "20241";
+
+    String expectedParams =
+        String.format(
+            "?quarter=%s&enrollCode=%s",
+            quarter, enrollCd);
+    String expectedURL = UCSBCurriculumService.FINALS_ENDPOINT + expectedParams;
+
+    this.mockRestServiceServer
+        .expect(requestTo(expectedURL))
+        .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
+        .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+        .andExpect(header("ucsb-api-version", "1.0"))
+        .andExpect(header("ucsb-api-key", apiKey))
+        .andRespond(withSuccess(expectedResult, MediaType.APPLICATION_JSON));
+
+    String result = ucs.getFinalExamInfo(quarter, enrollCd);
+
+    assertEquals(expectedResult, result);
+  }
+
+  @Test
+  public void test_getFinalExamInfo_exception() throws Exception {
+    String expectedResult = "{\"error\": \"401: Unauthorized\"}";
+
+    when(restTemplate.exchange(
+            any(String.class), eq(HttpMethod.GET), any(HttpEntity.class), eq(String.class)))
+        .thenThrow(HttpClientErrorException.class);
+
+    String enrollCd = "04051";
+    String quarter = "20241";
+
+    String expectedParams =
+        String.format(
+            "?quarter=%s&enrollCode=%s",
+            quarter, enrollCd);
+    String expectedURL = UCSBCurriculumService.FINALS_ENDPOINT + expectedParams;
+
+    this.mockRestServiceServer
+        .expect(requestTo(expectedURL))
+        .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
+        .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+        .andExpect(header("ucsb-api-version", "1.0"))
+        .andExpect(header("ucsb-api-key", apiKey))
+        .andRespond(withUnauthorizedRequest());
+
+    String result = ucs.getFinalExamInfo(quarter, enrollCd);
+
+    assertEquals(expectedResult, result);
+  }
 }
