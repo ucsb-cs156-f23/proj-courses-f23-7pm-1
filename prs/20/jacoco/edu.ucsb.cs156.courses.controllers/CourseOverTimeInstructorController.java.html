@@ -59,16 +59,11 @@ import org.springframework.web.bind.annotation.RestController;
           boolean lectureOnly)
       throws JsonProcessingException {
     List&lt;ConvertedSection&gt; courseResults;
-<span class="fc bfc" id="L62" title="All 2 branches covered.">    if (lectureOnly) {</span>
-<span class="fc" id="L63">      courseResults =</span>
-<span class="fc" id="L64">          convertedSectionCollection.findByQuarterRangeAndInstructor(</span>
-<span class="fc" id="L65">              startQtr, endQtr, &quot;^&quot; + instructor.toUpperCase(), &quot;^(Teaching and in charge)&quot;);</span>
-    } else {
-<span class="fc" id="L67">      courseResults =</span>
-<span class="fc" id="L68">          convertedSectionCollection.findByQuarterRangeAndInstructor(startQtr, endQtr, &quot;^&quot;, &quot;^.*&quot;);</span>
-    }
-<span class="fc" id="L70">    String body = mapper.writeValueAsString(courseResults);</span>
-<span class="fc" id="L71">    return ResponseEntity.ok().body(body);</span>
+<span class="fc" id="L62">      courseResults =</span>
+<span class="fc" id="L63">          convertedSectionCollection.findByQuarterRangeAndInstructor(</span>
+<span class="fc" id="L64">              startQtr, endQtr, &quot;^&quot; + instructor.toUpperCase(), &quot;^(Teaching and in charge)&quot;);</span>
+<span class="fc" id="L65">    String body = mapper.writeValueAsString(courseResults);</span>
+<span class="fc" id="L66">    return ResponseEntity.ok().body(body);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
