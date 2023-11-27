@@ -10,6 +10,9 @@ import edu.ucsb.cs156.courses.services.jobs.JobContext;
 import edu.ucsb.cs156.courses.services.jobs.JobContextConsumer;
 import java.util.List;
 import java.util.Optional;
+
+import javax.security.auth.Subject;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -35,7 +38,7 @@ public class UpdateFinalsDataJob implements JobContextConsumer {
     ctx.log("Updating final exam info for [" + quarterYYYYQ + "]");
 
     List<ConvertedSection> convertedSections =
-        convertedSectionCollection.findAll();
+        convertedSectionCollection.findByQuarterRange(quarterYYYYQ, quarterYYYYQ);
 
     ctx.log("Attempting to update final exams for " + convertedSections.size() + " sections in MongoDB...");
 
