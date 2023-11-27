@@ -59,9 +59,9 @@ import org.springframework.web.bind.annotation.RestController;
           boolean lectureOnly)
       throws JsonProcessingException {
     List&lt;ConvertedSection&gt; courseResults;
-<span class="fc" id="L62">      courseResults =</span>
-<span class="fc" id="L63">          convertedSectionCollection.findByQuarterRangeAndInstructor(</span>
-<span class="fc" id="L64">              startQtr, endQtr, &quot;^&quot; + instructor.toUpperCase(), &quot;^(Teaching and in charge)&quot;);</span>
+<span class="fc" id="L62">    courseResults =</span>
+<span class="fc" id="L63">        convertedSectionCollection.findByQuarterRangeAndInstructor(</span>
+<span class="fc" id="L64">            startQtr, endQtr, &quot;^&quot; + instructor.toUpperCase(), &quot;^(Teaching and in charge)&quot;);</span>
 <span class="fc" id="L65">    String body = mapper.writeValueAsString(courseResults);</span>
 <span class="fc" id="L66">    return ResponseEntity.ok().body(body);</span>
   }
