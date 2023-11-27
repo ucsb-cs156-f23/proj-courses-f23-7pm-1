@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.ucsb.cs156.courses.documents.ConvertedSection;
 import edu.ucsb.cs156.courses.documents.CoursePage;
 import edu.ucsb.cs156.courses.models.Quarter;
-
 import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -54,7 +53,7 @@ public class UCSBCurriculumService {
   public static final String ALL_SECTIONS_ENDPOINT =
       "https://api.ucsb.edu/academics/curriculums/v3/classes/{quarter}/{enrollcode}";
 
-  public static final String FINALS_ENDPOINT = 
+  public static final String FINALS_ENDPOINT =
       "https://api.ucsb.edu/academics/curriculums/v3/finals";
 
   public String getJSON(String subjectArea, String quarter, String courseLevel) {
@@ -262,11 +261,11 @@ public class UCSBCurriculumService {
         "https://api.ucsb.edu/academics/curriculums/v3/classsection/" + quarter + "/" + enrollCd;
 
     String urlTemplate =
-      UriComponentsBuilder.fromHttpUrl(url)
-          .queryParam("quarter", "{quarter}")
-          .queryParam("enrollCode", "{enrollCode}")
-          .encode()
-          .toUriString();
+        UriComponentsBuilder.fromHttpUrl(url)
+            .queryParam("quarter", "{quarter}")
+            .queryParam("enrollCode", "{enrollCode}")
+            .encode()
+            .toUriString();
 
     log.info("url=" + url);
 
@@ -301,10 +300,7 @@ public class UCSBCurriculumService {
       log.info("invalid quarter format: {}", quarter);
     }
 
-    String params =
-        String.format(
-            "?quarter=%s&enrollCode=%s",
-            quarter, enrollCd);
+    String params = String.format("?quarter=%s&enrollCode=%s", quarter, enrollCd);
     String url = FINALS_ENDPOINT + params;
 
     log.info("url=" + url);

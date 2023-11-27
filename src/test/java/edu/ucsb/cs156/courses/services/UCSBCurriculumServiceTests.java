@@ -431,10 +431,7 @@ public class UCSBCurriculumServiceTests {
     String enrollCd = "04051";
     String quarter = "";
 
-    String expectedParams =
-        String.format(
-            "?quarter=%s&enrollCode=%s",
-            quarter, enrollCd);
+    String expectedParams = String.format("?quarter=%s&enrollCode=%s", quarter, enrollCd);
     String expectedURL = UCSBCurriculumService.FINALS_ENDPOINT + expectedParams;
 
     this.mockRestServiceServer
@@ -457,10 +454,7 @@ public class UCSBCurriculumServiceTests {
     String enrollCd = "04051";
     String quarter = "20241";
 
-    String expectedParams =
-        String.format(
-            "?quarter=%s&enrollCode=%s",
-            quarter, enrollCd);
+    String expectedParams = String.format("?quarter=%s&enrollCode=%s", quarter, enrollCd);
     String expectedURL = UCSBCurriculumService.FINALS_ENDPOINT + expectedParams;
 
     this.mockRestServiceServer
@@ -487,10 +481,7 @@ public class UCSBCurriculumServiceTests {
     String enrollCd = "04051";
     String quarter = "20241";
 
-    String expectedParams =
-        String.format(
-            "?quarter=%s&enrollCode=%s",
-            quarter, enrollCd);
+    String expectedParams = String.format("?quarter=%s&enrollCode=%s", quarter, enrollCd);
     String expectedURL = UCSBCurriculumService.FINALS_ENDPOINT + expectedParams;
 
     this.mockRestServiceServer

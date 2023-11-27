@@ -2,7 +2,6 @@ package edu.ucsb.cs156.courses.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import edu.ucsb.cs156.courses.repositories.UserRepository;
 import edu.ucsb.cs156.courses.services.UCSBCurriculumService;
 import lombok.extern.slf4j.Slf4j;
@@ -25,8 +24,7 @@ public class UCSBFinalExamController {
   @Autowired UCSBCurriculumService ucsbCurriculumService;
 
   @GetMapping(value = "", produces = "application/json")
-  public ResponseEntity<String> finalsinfo(
-      @RequestParam String qxx, @RequestParam String enrollCd)
+  public ResponseEntity<String> finalsinfo(@RequestParam String qxx, @RequestParam String enrollCd)
       throws JsonProcessingException {
 
     String body = ucsbCurriculumService.getFinalExamInfo(qxx, enrollCd);
