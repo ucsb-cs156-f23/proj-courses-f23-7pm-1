@@ -2,6 +2,8 @@ package edu.ucsb.cs156.courses.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import edu.ucsb.cs156.courses.models.Quarter;
 import edu.ucsb.cs156.courses.repositories.UserRepository;
 import edu.ucsb.cs156.courses.services.UCSBCurriculumService;
 import lombok.extern.slf4j.Slf4j;
@@ -28,21 +30,9 @@ public class UCSBFinalExamController {
       @RequestParam String qxx, @RequestParam String enrollCd)
       throws JsonProcessingException {
 
-    char q = qxx.charAt(0);
-    String yearDigits = qxx.substring(1);
+    Quarter quarter = new Quarter(qxx.toUpperCase());
 
-    String quarterNumber;
-    switch (q) {
-      case 'w': quarterNumber = "1"; break;
-      case 's': quarterNumber = "2"; break;
-      case 'm': quarterNumber = "3"; break;
-      case 'f': quarterNumber = "4"; break;
-      default: quarterNumber = "?";
-    }
-    
-    String quarter = "20" + yearDigits + quarterNumber;
-
-    String body = ucsbCurriculumService.getFinalExamInfo(quarter, enrollCd);
+    String body = ucsbCurriculumService.getFinalExamInfo(quarter.getYYYYQ(), enrollCd);
 
     return ResponseEntity.ok().body(body);
   }
