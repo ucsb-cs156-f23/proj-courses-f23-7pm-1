@@ -18,7 +18,6 @@ import lombok.Getter;
 public class UpdateFinalsDataJob implements JobContextConsumer {
   private String start_quarterYYYYQ;
   private String end_quarterYYYYQ;
-  private List<String> subjects;
   private UCSBCurriculumService ucsbCurriculumService;
   private ConvertedSectionCollection convertedSectionCollection;
 
