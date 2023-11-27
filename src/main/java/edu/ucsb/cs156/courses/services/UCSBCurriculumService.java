@@ -52,6 +52,9 @@ public class UCSBCurriculumService {
   public static final String ALL_SECTIONS_ENDPOINT =
       "https://api.ucsb.edu/academics/curriculums/v3/classes/{quarter}/{enrollcode}";
 
+  public static final String FINALS_ENDPOINT = 
+      "https://api.ucsb.edu/academics/curriculums/v3/finals";
+
   public String getJSON(String subjectArea, String quarter, String courseLevel) {
 
     HttpHeaders headers = new HttpHeaders();
@@ -239,6 +242,10 @@ public class UCSBCurriculumService {
     return retVal;
   }
 
+  /*
+   * This method retrieves the final exam date and time information for the class specified
+   * by the enrollment code and quarter the course is being offered.
+   */
   public String getJSONbyQtrEnrollCd(String quarter, String enrollCd) {
 
     HttpHeaders headers = new HttpHeaders();
@@ -251,6 +258,46 @@ public class UCSBCurriculumService {
 
     String url =
         "https://api.ucsb.edu/academics/curriculums/v3/classsection/" + quarter + "/" + enrollCd;
+
+    String urlTemplate =
+      UriComponentsBuilder.fromHttpUrl(url)
+          .queryParam("quarter", "{quarter}")
+          .queryParam("enrollCode", "{enrollCode}")
+          .encode()
+          .toUriString();
+
+    log.info("url=" + url);
+
+    String retVal = "";
+    MediaType contentType = null;
+    HttpStatus statusCode = null;
+    try {
+      ResponseEntity<String> re = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+      contentType = re.getHeaders().getContentType();
+      statusCode = re.getStatusCode();
+      retVal = re.getBody();
+    } catch (HttpClientErrorException e) {
+      retVal = "{\"error\": \"401: Unauthorized\"}";
+    }
+    log.info("json: {} contentType: {} statusCode: {}", retVal, contentType, statusCode);
+    return retVal;
+  }
+
+  public String getFinalExamInfo(String quarter, String enrollCd) {
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    headers.set("ucsb-api-version", "1.0");
+    headers.set("ucsb-api-key", this.apiKey);
+
+    HttpEntity<String> entity = new HttpEntity<>("body", headers);
+
+    String params =
+        String.format(
+            "?quarter=%s&enrollCode=%s",
+            quarter, enrollCd);
+    String url = FINALS_ENDPOINT + params;
 
     log.info("url=" + url);
 
