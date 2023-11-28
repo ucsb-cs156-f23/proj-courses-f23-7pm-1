@@ -116,7 +116,8 @@ describe("Section tests", () => {
       "Days",
       "Time",
       "Instructor",
-      "Enroll Code",
+      "Enroll Code", 
+      "Section Number"
     ];
     const expectedFields = [
       "quarter",
@@ -129,6 +130,7 @@ describe("Section tests", () => {
       "time",
       "instructor",
       "section.enrollCode",
+      "sectionNumber"
     ];
     const testId = "SectionsTable";
 
@@ -150,6 +152,9 @@ describe("Section tests", () => {
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-quarter`),
     ).toHaveTextContent("W22");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-sectionNumber`),
+    ).toHaveTextContent("0100");
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-time`),
     ).toHaveTextContent("3:00 PM - 3:50 PM");
@@ -254,4 +259,35 @@ describe("Section tests", () => {
       screen.getByTestId(`${testId}-cell-row-3-col-status`),
     ).toHaveTextContent("CANCELLED");
   });
+  test("Sections have appropriate section number columns", () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <SectionsTable sections={fiveSections} />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    const testId = "SectionsTable";
+
+    const expandRow = screen.getByTestId(
+      `${testId}-cell-row-1-col-courseInfo.courseId-expand-symbols`,
+    );
+    fireEvent.click(expandRow);
+
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-status`),
+    ).toHaveTextContent("OPEN");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-status`),
+    ).toHaveTextContent("CLOSED");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-status`),
+    ).toHaveTextContent("FULL");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-3-col-status`),
+    ).toHaveTextContent("CANCELLED");
+  });
 });
+
+
