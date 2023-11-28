@@ -26,6 +26,8 @@ import CourseOverTimeInstructorIndexPage from "main/pages/CourseOverTime/CourseO
 
 import CourseOverTimeBuildingsIndexPage from "main/pages/CourseOverTime/CourseOverTimeBuildingsIndexPage";
 
+import CourseDetailsPage from "main/pages/CourseDetails/CourseDetailsPage";
+
 function App() {
   const { data: currentUser } = useCurrentUser();
 
@@ -101,6 +103,11 @@ function App() {
           exact
           path="/courseovertime/instructorsearch"
           element={<CourseOverTimeInstructorIndexPage />}
+        />
+        <Route
+          exact
+          path="/coursedetails/:yyyyq/:enrollCd"
+          element={<CourseDetailsPage />}
         />
       </Routes>
     </BrowserRouter>
