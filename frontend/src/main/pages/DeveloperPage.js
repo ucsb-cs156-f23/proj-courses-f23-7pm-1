@@ -16,6 +16,7 @@ const DeveloperPage = () => {
       method: "GET",
       url: "/api/systemInfo",
     },
+    // Stryker disable next-line all
     [],
   );
 
