@@ -116,8 +116,8 @@ describe("Section tests", () => {
       "Days",
       "Time",
       "Instructor",
-      "Enroll Code", 
-      "Section Number"
+      "Enroll Code",
+      "Section Number",
     ];
     const expectedFields = [
       "quarter",
@@ -130,7 +130,7 @@ describe("Section tests", () => {
       "time",
       "instructor",
       "section.enrollCode",
-      "sectionNumber"
+      "sectionNumber",
     ];
     const testId = "SectionsTable";
 
@@ -289,5 +289,3 @@ describe("Section tests", () => {
     ).toHaveTextContent("CANCELLED");
   });
 });
-
-
