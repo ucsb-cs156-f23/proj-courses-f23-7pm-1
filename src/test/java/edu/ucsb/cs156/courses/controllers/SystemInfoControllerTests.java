@@ -34,6 +34,8 @@ public class SystemInfoControllerTests extends ControllerTestCase {
             .springH2ConsoleEnabled(true)
             .startQtrYYYYQ("20221")
             .endQtrYYYYQ("20222")
+            .commitSha("d6482a73fbd3dd0f7e7475f883ef34744b352603")
+            .commitMessage("jy - fixed issue with properties not being found")
             .build();
     when(mockSystemInfoService.getSystemInfo()).thenReturn(systemInfo);
     String expectedJson = mapper.writeValueAsString(systemInfo);
@@ -58,6 +60,8 @@ public class SystemInfoControllerTests extends ControllerTestCase {
             .springH2ConsoleEnabled(true)
             .startQtrYYYYQ("20221")
             .endQtrYYYYQ("20222")
+            .commitSha("d6482a73fbd3dd0f7e7475f883ef34744b352603")
+            .commitMessage("jy - fixed issue with properties not being found")
             .build();
     when(mockSystemInfoService.getSystemInfo()).thenReturn(systemInfo);
     String expectedJson = mapper.writeValueAsString(systemInfo);
@@ -83,6 +87,8 @@ public class SystemInfoControllerTests extends ControllerTestCase {
             .springH2ConsoleEnabled(true)
             .startQtrYYYYQ("20221")
             .endQtrYYYYQ("20222")
+            .commitSha("d6482a73fbd3dd0f7e7475f883ef34744b352603")
+            .commitMessage("jy - fixed issue with properties not being found")
             .build();
     when(mockSystemInfoService.getSystemInfo()).thenReturn(systemInfo);
     String expectedJson = mapper.writeValueAsString(systemInfo);
