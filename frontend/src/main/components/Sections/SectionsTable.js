@@ -15,6 +15,7 @@ import {
 } from "main/utils/sectionUtils.js";
 
 function getFirstVal(values) {
+  //Get first value
   return values[0];
 }
 
