@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import PersonalScheduleDropdown from "../PersonalSchedules/PersonalScheduleDropdown.js";
+import { useBackend } from "main/utils/useBackend";
 
 function CourseForm({ initialCourse, submitAction, buttonLabel = "Create" }) {
   // Stryker disable all
@@ -15,11 +16,16 @@ function CourseForm({ initialCourse, submitAction, buttonLabel = "Create" }) {
 
   const navigate = useNavigate();
 
-  // Dummy schedule data
-  const schedules = [
-    { id: 1, quarter: "20213", name: "Placeholder Schedule 1" },
-    { id: 2, quarter: "20223", name: "Placeholder Schedule 2" },
-  ];
+  const {
+    data: schedules,
+    error: _error,
+    status: _status,
+  } = useBackend(
+    // Stryker disable next-line all : don't test internal caching of React Query
+    ["/api/personalschedules/all"],
+    { method: "GET", url: "/api/personalschedules/all" },
+    [],
+  );
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
