@@ -13,6 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.ucsb.cs156.courses.documents.ConvertedSection;
 import edu.ucsb.cs156.courses.documents.CoursePageFixtures;
+import edu.ucsb.cs156.courses.documents.FinalExam;
 import edu.ucsb.cs156.courses.documents.PersonalSectionsFixtures;
 import edu.ucsb.cs156.courses.documents.SectionFixtures;
 import java.util.List;
@@ -429,7 +430,7 @@ public class UCSBCurriculumServiceTests {
     String expectedResult = "{expectedResult}";
 
     String enrollCd = "04051";
-    String quarter = "";
+    String quarter = "20241";
 
     String expectedParams = String.format("?quarter=%s&enrollCode=%s", quarter, enrollCd);
     String expectedURL = UCSBCurriculumService.FINALS_ENDPOINT + expectedParams;
@@ -452,7 +453,7 @@ public class UCSBCurriculumServiceTests {
     String expectedResult = "{\"error\": \"401: Unauthorized\"}";
 
     String enrollCd = "04051";
-    String quarter = "20241";
+    String quarter = "";
 
     String expectedParams = String.format("?quarter=%s&enrollCode=%s", quarter, enrollCd);
     String expectedURL = UCSBCurriculumService.FINALS_ENDPOINT + expectedParams;
@@ -495,5 +496,29 @@ public class UCSBCurriculumServiceTests {
     String result = ucs.getFinalExamInfo(quarter, enrollCd);
 
     assertEquals(expectedResult, result);
+  }
+
+  @Test
+  public void test_getFinalExamObject_success() throws Exception {
+    String expectedResult = "{}";
+
+    String enrollCd = "04051";
+    String quarter = "20241";
+
+    String expectedParams = String.format("?quarter=%s&enrollCode=%s", quarter, enrollCd);
+    String expectedURL = UCSBCurriculumService.FINALS_ENDPOINT + expectedParams;
+
+    this.mockRestServiceServer
+        .expect(requestTo(expectedURL))
+        .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
+        .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+        .andExpect(header("ucsb-api-version", "1.0"))
+        .andExpect(header("ucsb-api-key", apiKey))
+        .andRespond(withSuccess(expectedResult, MediaType.APPLICATION_JSON));
+
+    FinalExam result = ucs.getFinalExamObject(quarter, enrollCd);
+
+    ObjectMapper objectMapper = new ObjectMapper();
+    assertEquals(objectMapper.readValue(expectedResult, FinalExam.class), result);
   }
 }
