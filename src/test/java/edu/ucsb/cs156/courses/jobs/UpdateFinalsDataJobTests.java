@@ -1,6 +1,7 @@
 package edu.ucsb.cs156.courses.jobs;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
@@ -9,6 +10,7 @@ import edu.ucsb.cs156.courses.collections.ConvertedSectionCollection;
 import edu.ucsb.cs156.courses.documents.ConvertedSection;
 import edu.ucsb.cs156.courses.documents.CoursePage;
 import edu.ucsb.cs156.courses.documents.CoursePageFixtures;
+import edu.ucsb.cs156.courses.documents.FinalExam;
 import edu.ucsb.cs156.courses.entities.Job;
 import edu.ucsb.cs156.courses.services.UCSBCurriculumService;
 import edu.ucsb.cs156.courses.services.jobs.JobContext;
@@ -94,6 +96,10 @@ public class UpdateFinalsDataJobTests {
             eq("20222"), eq("20222")))
         .thenReturn(exampleSections);
 
+    FinalExam newFinalInfo = new FinalExam();
+    when(ucsbCurriculumService.getFinalExamObject(any(), any()))
+            .thenReturn(newFinalInfo);
+
     // Act
     var job =
         new UpdateFinalsDataJob(
@@ -110,6 +116,9 @@ public class UpdateFinalsDataJobTests {
                 Final exam info for [20222] has been updated""";
 
     assertEquals(expected, jobStarted.getLog());
+    assertNotNull(section0.getFinalExam());
+
+    verify(convertedSectionCollection, times(2)).save( any() );
   }
 
   @Test
