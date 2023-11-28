@@ -14,6 +14,7 @@ public class UpdateFinalsDataJobFactory {
 
   public UpdateFinalsDataJob createForQuarterRange(
       String start_quarterYYYYQ, String end_quarterYYYYQ) {
-    return new UpdateFinalsDataJob(start_quarterYYYYQ, end_quarterYYYYQ, ucsbCurriculumService, convertedSectionCollection);
+    return new UpdateFinalsDataJob(
+        start_quarterYYYYQ, end_quarterYYYYQ, ucsbCurriculumService, convertedSectionCollection);
   }
 }

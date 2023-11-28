@@ -321,7 +321,8 @@ public class UCSBCurriculumService {
     return retVal;
   }
 
-  public FinalExam getFinalExamObject(String quarter, String enrollCd) throws JsonProcessingException {
+  public FinalExam getFinalExamObject(String quarter, String enrollCd)
+      throws JsonProcessingException {
     String json = getFinalExamInfo(quarter, enrollCd);
     FinalExam finalExam = objectMapper.readValue(json, FinalExam.class);
     return finalExam;

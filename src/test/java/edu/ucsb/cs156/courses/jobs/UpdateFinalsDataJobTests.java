@@ -37,10 +37,7 @@ public class UpdateFinalsDataJobTests {
     var job =
         spy(
             new UpdateFinalsDataJob(
-                "20211",
-                "20213",
-                ucsbCurriculumService,
-                convertedSectionCollection));
+                "20211", "20213", ucsbCurriculumService, convertedSectionCollection));
     doNothing().when(job).updateFinals(any(), any());
 
     job.accept(ctx);
@@ -92,13 +89,11 @@ public class UpdateFinalsDataJobTests {
     Optional<ConvertedSection> section0Optional = Optional.of(section0);
     Optional<ConvertedSection> emptyOptional = Optional.empty();
 
-    when(convertedSectionCollection.findByQuarterRange(
-            eq("20222"), eq("20222")))
+    when(convertedSectionCollection.findByQuarterRange(eq("20222"), eq("20222")))
         .thenReturn(exampleSections);
 
     FinalExam newFinalInfo = new FinalExam();
-    when(ucsbCurriculumService.getFinalExamObject(any(), any()))
-            .thenReturn(newFinalInfo);
+    when(ucsbCurriculumService.getFinalExamObject(any(), any())).thenReturn(newFinalInfo);
 
     // Act
     var job =
@@ -118,7 +113,7 @@ public class UpdateFinalsDataJobTests {
     assertEquals(expected, jobStarted.getLog());
     assertNotNull(section0.getFinalExam());
 
-    verify(convertedSectionCollection, times(2)).save( any() );
+    verify(convertedSectionCollection, times(2)).save(any());
   }
 
   @Test
@@ -140,7 +135,7 @@ public class UpdateFinalsDataJobTests {
     when(convertedSectionCollection.findByQuarterRange(
             eq(section0.getCourseInfo().getQuarter()), eq(section0.getCourseInfo().getQuarter())))
         .thenReturn(listWithOneSection);
-    when(convertedSectionCollection.save( any() ))
+    when(convertedSectionCollection.save(any()))
         .thenThrow(new IllegalArgumentException("Testing Exception Handling!"));
 
     // Act

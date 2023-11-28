@@ -140,7 +140,8 @@ public class JobsController extends ApiController {
       @Parameter(name = "end_quarterYYYYQ", description = "end quarter (YYYYQ format)")
           @RequestParam
           String end_quarterYYYYQ) {
-    UpdateFinalsDataJob updateFinalsDataJob = updateFinalsDataJobFactory.createForQuarterRange(start_quarterYYYYQ, end_quarterYYYYQ);
+    UpdateFinalsDataJob updateFinalsDataJob =
+        updateFinalsDataJobFactory.createForQuarterRange(start_quarterYYYYQ, end_quarterYYYYQ);
     return jobService.runAsJob(updateFinalsDataJob);
   }
 }
