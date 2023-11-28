@@ -39,7 +39,7 @@ describe("AdminJobsPage tests", () => {
     expect(await screen.findByText("Launch Jobs")).toBeInTheDocument();
     expect(await screen.findByText("Job Status")).toBeInTheDocument();
 
-    ["Test Job", "Update Courses Database", "Update Grade Info"].map(
+    ["Test Job", "Update Courses Database", "Update Grade Info", "Update Final Exam Info"].map(
       (jobName) => expect(screen.getByText(jobName)).toBeInTheDocument(),
     );
 
