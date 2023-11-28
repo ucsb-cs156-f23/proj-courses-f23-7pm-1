@@ -13,6 +13,7 @@ import {
   isSectionClosed,
   isSectionFull,
 } from "main/utils/sectionUtils.js";
+import { Button } from "react-bootstrap";
 
 function getFirstVal(values) {
   //Get first value
@@ -128,6 +129,25 @@ export default function SectionsTable({ sections }) {
 
       aggregate: getFirstVal,
       Aggregated: ({ cell: { value } }) => `${value}`,
+    },
+    {
+      Header: "Info",
+      accessor: (row) =>
+        `/coursedetails/${row.courseInfo.quarter}/${row.section.enrollCode}`,
+      disableGroupBy: true,
+      id: "info",
+
+      aggregate: getFirstVal,
+      Cell: ({ cell: { value } }) => (
+        <Button variant="outline-dark" size="sm" href={value}>
+          ⓘ
+        </Button>
+      ),
+      Aggregated: ({ cell: { value } }) => (
+        <Button variant="outline-light" size="sm" href={value}>
+          ⓘ
+        </Button>
+      ),
     },
   ];
 
