@@ -85,13 +85,13 @@ export default function SectionsTable({ sections }) {
       Aggregated: ({ cell: { value } }) => `${value}`,
     },
     {
-    Header: "Section Number",
-    accessor: (row) => row.section.section,
-    // Stryker disable next-line StringLiteral: this column is hidden, very hard to test
-    id: "sectionNumber",
-    aggregate: getFirstVal,
-    Aggregated: ({ cell: { value } }) => `${value}`,
-  },
+      Header: "Section Number",
+      accessor: (row) => row.section.section,
+      // Stryker disable next-line StringLiteral: this column is hidden, very hard to test
+      id: "sectionNumber",
+      aggregate: getFirstVal,
+      Aggregated: ({ cell: { value } }) => `${value}`,
+    },
     {
       Header: "Days",
       accessor: (row) => formatDays(row.section.timeLocations),

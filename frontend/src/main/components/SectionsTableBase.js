@@ -14,7 +14,7 @@ export default function SectionsTableBase({
       {
         initialState: {
           groupBy: ["courseInfo.courseId"],
-          hiddenColumns: ["isSection"],
+          hiddenColumns: [],
         },
         columns,
         data,
