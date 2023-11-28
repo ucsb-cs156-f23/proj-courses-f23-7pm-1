@@ -45,19 +45,16 @@ public class UpdateFinalsDataJob implements JobContextConsumer {
     int updatedSections = 0;
     int errors = 0;
 
-    for (ConvertedSection section : convertedSectionCollection.findAll()) {
-      String quarter = section.getCourseInfo().getQuarter();
+    for (ConvertedSection section : convertedSections) {
       String enrollCd = section.getSection().getEnrollCode();
-      if (quarter.equals(quarterYYYYQ)) {
-        try {
-          FinalExam finalExam = ucsbCurriculumService.getFinalExamObject(quarter, enrollCd);
-          section.setFinalExam(finalExam);
-          convertedSectionCollection.save(section);
-          updatedSections++;
-        } catch (Exception e) {
-          ctx.log("Error saving final exam: " + e.getMessage());
-          errors++;
-        }
+      try {
+        FinalExam finalExam = ucsbCurriculumService.getFinalExamObject(quarterYYYYQ, enrollCd);
+        section.setFinalExam(finalExam);
+        convertedSectionCollection.save(section);
+        updatedSections++;
+      } catch (Exception e) {
+        ctx.log("Error saving final exam: " + e.getMessage());
+        errors++;
       }
     }
 
