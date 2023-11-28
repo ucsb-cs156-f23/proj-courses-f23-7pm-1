@@ -53,7 +53,9 @@ describe("Coursedetailspage tests", () => {
     expect(
       screen.getByText("Course Details Placeholder Page"),
     ).toBeInTheDocument();
-    expect(screen.getByText("Quarter in yyyyq format: 20233")).toBeInTheDocument();
+    expect(
+      screen.getByText("Quarter in yyyyq format: 20233"),
+    ).toBeInTheDocument();
     expect(screen.getByText("EnrollCd: 00123")).toBeInTheDocument();
   });
 });
