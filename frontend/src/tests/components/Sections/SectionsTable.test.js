@@ -183,7 +183,7 @@ describe("Section tests", () => {
     ).toHaveTextContent("ⓘ");
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-info`).children[0].href,
-    ).toMatch(/\/course\/details\/20221\/12583$/);
+    ).toMatch(/\/coursedetails\/20221\/12583$/);
   });
 
   test("Correctly groups separate lectures of the same class", async () => {

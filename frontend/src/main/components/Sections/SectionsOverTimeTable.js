@@ -130,7 +130,7 @@ export default function SectionsOverTimeTable({ sections }) {
     {
       Header: "Info",
       accessor: (row) =>
-        `/course/details/${row.courseInfo.quarter}/${row.section.enrollCode}`,
+        `/coursedetails/${row.courseInfo.quarter}/${row.section.enrollCode}`,
       disableGroupBy: true,
       id: "info",
 

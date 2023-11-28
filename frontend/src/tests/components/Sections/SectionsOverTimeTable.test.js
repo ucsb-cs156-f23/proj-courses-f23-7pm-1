@@ -193,7 +193,7 @@ describe("Section tests", () => {
     ).toHaveTextContent("ⓘ");
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-info`).children[0].href,
-    ).toMatch(/\/course\/details\/20222\/08078$/);
+    ).toMatch(/\/coursedetails\/20222\/08078$/);
   });
 
   test("Correctly groups separate quarters of the same class", async () => {
