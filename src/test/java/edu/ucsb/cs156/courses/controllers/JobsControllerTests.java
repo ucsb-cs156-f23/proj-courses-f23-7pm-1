@@ -18,6 +18,7 @@ import edu.ucsb.cs156.courses.collections.ConvertedSectionCollection;
 import edu.ucsb.cs156.courses.entities.Job;
 import edu.ucsb.cs156.courses.entities.User;
 import edu.ucsb.cs156.courses.jobs.UpdateCourseDataJobFactory;
+import edu.ucsb.cs156.courses.jobs.UpdateFinalsDataJobFactory;
 import edu.ucsb.cs156.courses.jobs.UploadGradeDataJobFactory;
 import edu.ucsb.cs156.courses.repositories.JobsRepository;
 import edu.ucsb.cs156.courses.repositories.UserRepository;
@@ -57,6 +58,8 @@ public class JobsControllerTests extends ControllerTestCase {
   @MockBean UCSBCurriculumService ucsbCurriculumService;
 
   @MockBean UpdateCourseDataJobFactory updateCourseDataJobFactory;
+
+  @MockBean UpdateFinalsDataJobFactory updateFinalsDataJobFactory;
 
   @MockBean ConvertedSectionCollection convertedSectionCollection;
 

@@ -31,8 +31,10 @@ public class ConvertedSection {
     Section newSection = (Section) this.getSection().clone();
     newConvertedSection.setSection(newSection);
 
-    FinalExam newFinalExam = (FinalExam) this.getFinalExam().clone();
-    newConvertedSection.setFinalExam(newFinalExam);
+    if (this.getFinalExam() != null) {
+      FinalExam newFinalExam = (FinalExam) this.getFinalExam().clone();
+      newConvertedSection.setFinalExam(newFinalExam);
+    }
 
     return newConvertedSection;
   }
