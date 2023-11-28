@@ -14,9 +14,7 @@ describe("DeveloperPage tests", () => {
   beforeEach(() => {
     axiosMock.reset();
     axiosMock.resetHistory();
-    axiosMock
-      .onGet("/api/systemInfo")
-      .reply(200, developerFixtures);
+    axiosMock.onGet("/api/systemInfo").reply(200, developerFixtures);
   });
 
   test("renders without crashing", async () => {

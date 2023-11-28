@@ -1,7 +1,7 @@
 import React from "react";
 
 import DeveloperTable from "main/components/Developer/DeveloperTable";
-import {developerFixtures} from "fixtures/systemInfoFixtures";
+import { developerFixtures } from "fixtures/systemInfoFixtures";
 
 export default {
   title: "components/Developer/DeveloperTable",

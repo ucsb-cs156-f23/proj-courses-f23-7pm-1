@@ -28,11 +28,11 @@ describe("UserTable tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-commitSha`)).toHaveTextContent(
-      "4a3d0f9b2c23e2e4a1c1d3e4f5b6a7d8b9c0e1f2"
-    );
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-commitMessage`)).toHaveTextContent(
-      "Test commit message 1"
-    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-commitSha`),
+    ).toHaveTextContent("4a3d0f9b2c23e2e4a1c1d3e4f5b6a7d8b9c0e1f2");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-commitMessage`),
+    ).toHaveTextContent("Test commit message 1");
   });
 });

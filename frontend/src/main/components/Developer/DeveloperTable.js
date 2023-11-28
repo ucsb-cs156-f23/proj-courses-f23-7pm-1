@@ -13,5 +13,7 @@ const columns = [
 ];
 
 export default function DeveloperTable({ commits }) {
-  return <OurTable data={[commits]} columns={columns} testid={"DeveloperTable"} />;
+  return (
+    <OurTable data={[commits]} columns={columns} testid={"DeveloperTable"} />
+  );
 }
