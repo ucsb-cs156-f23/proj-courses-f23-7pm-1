@@ -93,7 +93,7 @@ public class CourseOverTimeInstructorControllerTests {
 
     // mock
     when(convertedSectionCollection.findByQuarterRangeAndInstructor(
-            any(String.class), any(String.class), eq("^"), eq("^.*")))
+            any(String.class), any(String.class), eq("^CONRAD P T"), eq("^.*")))
         .thenReturn(expectedSecs);
 
     // act
