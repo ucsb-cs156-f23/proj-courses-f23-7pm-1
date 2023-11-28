@@ -17,4 +17,6 @@ public class SystemInfo {
   private String startQtrYYYYQ;
   private String endQtrYYYYQ;
   private String sourceRepo;
+  private String commitSha;
+  private String commitMessage;
 }
