@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import PersonalScheduleDropdown from "../PersonalSchedules/PersonalScheduleDropdown.js";
 
 function CourseForm({ initialCourse, submitAction, buttonLabel = "Create" }) {
   // Stryker disable all
@@ -13,6 +14,12 @@ function CourseForm({ initialCourse, submitAction, buttonLabel = "Create" }) {
   // Stryker enable all
 
   const navigate = useNavigate();
+
+  // Dummy schedule data
+  const schedules = [
+    { id: 1, quarter: "20213", name: "Placeholder Schedule 1" },
+    { id: 2, quarter: "20223", name: "Placeholder Schedule 2" },
+  ];
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -46,7 +53,7 @@ function CourseForm({ initialCourse, submitAction, buttonLabel = "Create" }) {
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Form.Group className="mb-3">
+      {/* <Form.Group className="mb-3">
         <Form.Label htmlFor="psId">Personal Schedule ID</Form.Label>
         <Form.Control
           data-testid="CourseForm-psId"
@@ -60,6 +67,16 @@ function CourseForm({ initialCourse, submitAction, buttonLabel = "Create" }) {
         <Form.Control.Feedback type="invalid">
           {errors.psId?.message}
         </Form.Control.Feedback>
+      </Form.Group> */}
+
+      <Form.Group className="mb-3">
+        <PersonalScheduleDropdown
+          schedules={schedules}
+          schedule={initialCourse ? initialCourse.psId : ""} // Pass the initial value if available
+          setSchedule={(selectedSchedule) => register("psId").onChange(selectedSchedule)} // Update the form value
+          controlId="psIdDropdown" // Unique identifier for the dropdown
+          label="Schedule"
+        />
       </Form.Group>
 
       <Button type="submit" data-testid="CourseForm-submit">
