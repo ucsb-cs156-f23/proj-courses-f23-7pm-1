@@ -4,6 +4,7 @@ import edu.ucsb.cs156.courses.models.SystemInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 // This class relies on property values
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service("systemInfo")
+@PropertySource("classpath:git.properties")
 @ConfigurationProperties
 public class SystemInfoServiceImpl extends SystemInfoService {
 
@@ -29,10 +31,10 @@ public class SystemInfoServiceImpl extends SystemInfoService {
   @Value("${app.sourceRepo:https://github.com/ucsb-cs156/proj-courses}")
   private String sourceRepo;
 
-  @Value("${git.commit.sha:unknown}")
+  @Value("${git.commit.id}")
   private String commitSha;
 
-  @Value("${git.commit.message:unknown}")
+  @Value("${git.commit.message.short}")
   private String commitMessage;
 
   public SystemInfo getSystemInfo() {
