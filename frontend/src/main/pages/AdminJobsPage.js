@@ -123,11 +123,7 @@ const AdminJobsPage = () => {
     },
     {
       name: "Update Final Exam Info",
-      form: (
-        <UpdateFinalsJobForm 
-          callback={submitUpdateFinalsJob}
-        />
-      ),
+      form: <UpdateFinalsJobForm callback={submitUpdateFinalsJob} />,
     },
   ];
 

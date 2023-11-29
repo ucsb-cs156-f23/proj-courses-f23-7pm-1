@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 
 import { quarterRange } from "main/utils/quarterUtilities";
@@ -20,8 +20,12 @@ const UpdateFinalsJobForm = ({ callback }) => {
   const localStartQuarter = localStorage.getItem("FinalsJob.StartQuarter");
   const localEndQuarter = localStorage.getItem("FinalsJob.EndQuarter");
 
-  const [startQuarter, setStartQuarter] = useState(localStartQuarter || quarters[0].yyyyq);
-  const [endQuarter, setEndQuarter] = useState(localEndQuarter || quarters[quarters.length - 1].yyyyq);
+  const [startQuarter, setStartQuarter] = useState(
+    localStartQuarter || quarters[0].yyyyq,
+  );
+  const [endQuarter, setEndQuarter] = useState(
+    localEndQuarter || quarters[quarters.length - 1].yyyyq,
+  );
 
   const handleSubmit = (event) => {
     event.preventDefault();

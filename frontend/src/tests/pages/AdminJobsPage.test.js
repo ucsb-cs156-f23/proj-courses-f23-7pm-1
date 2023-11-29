@@ -182,8 +182,6 @@ describe("AdminJobsPage tests", () => {
     );
   });
 
-  
-
   test("user can submit the update finals data job", async () => {
     render(
       <QueryClientProvider client={queryClient}>
