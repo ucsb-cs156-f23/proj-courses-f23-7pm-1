@@ -37,8 +37,8 @@ describe("SingleSubjectDropdown tests", () => {
     render(
       <PersonalScheduleDropdown
         schedules={personalScheduleFixtures.onePersonalSchedule}
-        scheduleState={personalScheduleFixtures.onePersonalSchedule}
-        setScheduleState={setSchedule}
+        schedule={personalScheduleFixtures.onePersonalSchedule}
+        setSchedule={setSchedule}
         controlId="psd1"
       />,
     );
@@ -48,8 +48,8 @@ describe("SingleSubjectDropdown tests", () => {
     render(
       <PersonalScheduleDropdown
         schedules={personalScheduleFixtures.threePersonalSchedules}
-        scheduleState={schedule}
-        setscheduleState={setSchedule}
+        schedule={schedule}
+        setschedule={setSchedule}
         controlId="psd2"
       />,
     );
@@ -59,8 +59,8 @@ describe("SingleSubjectDropdown tests", () => {
     render(
       <PersonalScheduleDropdown
         schedules={personalScheduleFixtures.threePersonalSchedules}
-        scheduleState={schedule}
-        setscheduleState={setSchedule}
+        schedule={schedule}
+        setSchedule={setSchedule}
         controlId="psd3"
       />,
     );
@@ -75,8 +75,8 @@ describe("SingleSubjectDropdown tests", () => {
     render(
       <PersonalScheduleDropdown
         schedules={personalScheduleFixtures.threePersonalSchedules}
-        scheduleState={schedule}
-        setScheduleState={setSchedule}
+        schedule={schedule}
+        setSchedule={setSchedule}
         controlId="psd1"
         onChange={onChange}
       />,
@@ -97,8 +97,8 @@ describe("SingleSubjectDropdown tests", () => {
     render(
       <PersonalScheduleDropdown
         schedules={personalScheduleFixtures.threePersonalSchedules}
-        scheduleState={schedule}
-        setScheduleState={setSchedule}
+        schedule={schedule}
+        setSchedule={setSchedule}
         controlId="psd1"
       />,
     );
@@ -110,8 +110,8 @@ describe("SingleSubjectDropdown tests", () => {
     render(
       <PersonalScheduleDropdown
         schedules={personalScheduleFixtures.threePersonalSchedules}
-        scheduleState={schedule}
-        setScheduleState={setSchedule}
+        schedule={schedule}
+        setSchedule={setSchedule}
         controlId="psd1"
       />,
     );
@@ -124,14 +124,14 @@ describe("SingleSubjectDropdown tests", () => {
     const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
     getItemSpy.mockImplementation(() => "1");
 
-    const setScheduleStateSpy = jest.fn();
-    useState.mockImplementation((x) => [x, setScheduleStateSpy]);
+    const setScheduleSpy = jest.fn();
+    useState.mockImplementation((x) => [x, setScheduleSpy]);
 
     render(
       <PersonalScheduleDropdown
         schedules={personalScheduleFixtures.threePersonalSchedules}
-        scheduleState={schedule}
-        setScheduleState={setSchedule}
+        schedule={schedule}
+        setSchedule={setSchedule}
         controlId="psd1"
       />,
     );
@@ -143,14 +143,14 @@ describe("SingleSubjectDropdown tests", () => {
     const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
     getItemSpy.mockImplementation(() => null);
 
-    const setScheduleStateSpy = jest.fn();
-    useState.mockImplementation((x) => [x, setScheduleStateSpy]);
+    const setScheduleSpy = jest.fn();
+    useState.mockImplementation((x) => [x, setScheduleSpy]);
 
     render(
       <PersonalScheduleDropdown
         schedules={personalScheduleFixtures.threePersonalSchedules}
-        scheduleState={schedule}
-        setScheduleState={setSchedule}
+        schedule={schedule}
+        setSchedule={setSchedule}
         controlId="psd1"
       />,
     );
@@ -164,8 +164,8 @@ describe("SingleSubjectDropdown tests", () => {
     render(
       <PersonalScheduleDropdown
         schedules={[]}
-        scheduleState={schedule}
-        setScheduleState={setSchedule}
+        schedule={schedule}
+        setSchedule={setSchedule}
         controlId="psd1"
       />,
     );
