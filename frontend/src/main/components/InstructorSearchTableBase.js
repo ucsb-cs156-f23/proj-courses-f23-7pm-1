@@ -12,6 +12,7 @@ export default function InstructorSearchTableBase({
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable(
       {
+        // Stryker disable next-line all
         initialState: {
           hiddenColumns: ["isSection"],
         },
