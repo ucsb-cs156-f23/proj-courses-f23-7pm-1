@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CourseDescriptionIndexPage from "main/pages/CourseDescriptions/CourseDescriptionIndexPage";
 import ProfilePage from "main/pages/ProfilePage";
 import AdminUsersPage from "main/pages/AdminUsersPage";
+import DeveloperPage from "main/pages/DeveloperPage";
 import AdminLoadSubjectsPage from "main/pages/AdminLoadSubjectsPage";
 import AdminPersonalSchedulesPage from "main/pages/AdminPersonalSchedulePage";
 import AdminJobsPage from "main/pages/AdminJobsPage";
@@ -43,6 +44,7 @@ function App() {
               path="/admin/loadsubjects"
               element={<AdminLoadSubjectsPage />}
             />
+            <Route exact path="/developer" element={<DeveloperPage />} />
             <Route
               exact
               path="/admin/personalschedule"
