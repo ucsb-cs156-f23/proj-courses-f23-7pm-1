@@ -60,7 +60,7 @@ describe("SingleSubjectDropdown tests", () => {
       <PersonalScheduleDropdown
         schedules={personalScheduleFixtures.threePersonalSchedules}
         schedule={schedule}
-        setschedule={setSchedule}
+        setSchedule={setSchedule}
         controlId="psd3"
       />,
     );
