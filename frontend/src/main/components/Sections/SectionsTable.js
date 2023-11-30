@@ -1,6 +1,7 @@
 import SectionsTableBase from "main/components/SectionsTableBase";
 
 import { yyyyqToQyy } from "main/utils/quarterUtilities.js";
+
 import {
   convertToFraction,
   formatDays,
@@ -15,6 +16,7 @@ import {
 import { Button } from "react-bootstrap";
 
 function getFirstVal(values) {
+  //Get first value
   return values[0];
 }
 
@@ -82,6 +84,14 @@ export default function SectionsTable({ sections }) {
       disableGroupBy: true,
       id: "location",
 
+      aggregate: getFirstVal,
+      Aggregated: ({ cell: { value } }) => `${value}`,
+    },
+    {
+      Header: "Section Number",
+      accessor: (row) => row.section.section,
+      // Stryker disable next-line StringLiteral: this column is hidden, very hard to test
+      id: "sectionNumber",
       aggregate: getFirstVal,
       Aggregated: ({ cell: { value } }) => `${value}`,
     },
