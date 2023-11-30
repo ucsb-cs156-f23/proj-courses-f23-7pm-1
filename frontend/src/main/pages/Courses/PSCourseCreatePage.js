@@ -15,9 +15,13 @@ export default function CoursesCreatePage() {
   });
 
   const onSuccess = (course) => {
-    toast(`New course Created - id: ${course[0].id} enrollCd: ${course[0].enrollCd}`);
+    toast(
+      `New course Created - id: ${course[0].id} enrollCd: ${course[0].enrollCd}`,
+    );
     if (course[1]) {
-      toast(`New course Created - id: ${course[1].id} enrollCd: ${course[1].enrollCd}`);
+      toast(
+        `New course Created - id: ${course[1].id} enrollCd: ${course[1].enrollCd}`,
+      );
     }
   };
 
