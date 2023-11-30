@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.ucsb.cs156.courses.documents.ConvertedSection;
 import edu.ucsb.cs156.courses.documents.CoursePage;
+import edu.ucsb.cs156.courses.documents.FinalExam;
 import edu.ucsb.cs156.courses.models.Quarter;
 import java.io.*;
 import java.util.Arrays;
@@ -318,5 +319,12 @@ public class UCSBCurriculumService {
     }
     log.info("json: {} contentType: {} statusCode: {}", retVal, contentType, statusCode);
     return retVal;
+  }
+
+  public FinalExam getFinalExamObject(String quarter, String enrollCd)
+      throws JsonProcessingException {
+    String json = getFinalExamInfo(quarter, enrollCd);
+    FinalExam finalExam = objectMapper.readValue(json, FinalExam.class);
+    return finalExam;
   }
 }

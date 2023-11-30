@@ -103,6 +103,10 @@ const AdminJobsPage = () => {
       name: "Update Grade Info",
       form: <JobComingSoon />,
     },
+    {
+      name: "Update Final Exam Info",
+      form: <JobComingSoon />,
+    },
   ];
 
   return (

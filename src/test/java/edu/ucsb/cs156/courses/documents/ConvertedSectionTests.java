@@ -32,5 +32,8 @@ public class ConvertedSectionTests {
     cs1.set_id(new ObjectId());
     ConvertedSection cs2 = (ConvertedSection) cs1.clone();
     assertEquals(cs1, cs2);
+    cs2.setFinalExam(new FinalExam());
+    ConvertedSection cs3 = (ConvertedSection) cs2.clone();
+    assertEquals(cs2, cs3);
   }
 }

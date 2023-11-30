@@ -16,6 +16,7 @@ public class ConvertedSection {
   private ObjectId _id;
   private CourseInfo courseInfo;
   private Section section;
+  private FinalExam finalExam;
 
   @Override
   public Object clone() throws CloneNotSupportedException {
@@ -29,6 +30,11 @@ public class ConvertedSection {
 
     Section newSection = (Section) this.getSection().clone();
     newConvertedSection.setSection(newSection);
+
+    if (this.getFinalExam() != null) {
+      FinalExam newFinalExam = (FinalExam) this.getFinalExam().clone();
+      newConvertedSection.setFinalExam(newFinalExam);
+    }
 
     return newConvertedSection;
   }
