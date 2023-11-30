@@ -63,7 +63,7 @@ describe("CoursesCreatePage tests", () => {
         id: "17",
         psId: 13,
         enrollCd: "08250",
-      }
+      },
     ];
 
     axiosMock.onPost("/api/courses/post").reply(202, courses);
@@ -89,16 +89,16 @@ describe("CoursesCreatePage tests", () => {
     expect(
       await screen.findByTestId("CourseForm-enrollCd"),
     ).toBeInTheDocument();
-    
+
     const psIdField = document.querySelector("#CourseForm-psId");
     const enrollCdField = screen.getByTestId("CourseForm-enrollCd");
     const submitButton = screen.getByTestId("CourseForm-submit");
 
-    fireEvent.change(psIdField, { target: { value: 13 } }); 
+    fireEvent.change(psIdField, { target: { value: 13 } });
     fireEvent.change(enrollCdField, { target: { value: "08250" } });
 
     // localStorage.setItem("CourseForm-psId", 13);
-    
+
     expect(submitButton).toBeInTheDocument();
 
     fireEvent.click(submitButton);
@@ -106,7 +106,7 @@ describe("CoursesCreatePage tests", () => {
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     // expect(quarterField).toHaveValue("20124");
-    //expect(setQuarter).toBeCalledWith("20124"); //need this and axiosMock below?   
+    //expect(setQuarter).toBeCalledWith("20124"); //need this and axiosMock below?
     expect(axiosMock.history.post[0].params).toEqual({
       psId: "13",
       enrollCd: "08250",
