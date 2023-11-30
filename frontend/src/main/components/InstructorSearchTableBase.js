@@ -13,7 +13,7 @@ export default function InstructorSearchTableBase({
     useTable(
       {
         initialState: {
-          hiddenColumns: ["isSection"]
+          hiddenColumns: ["isSection"],
         },
         columns,
         data,
