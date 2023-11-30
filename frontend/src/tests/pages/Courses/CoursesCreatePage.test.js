@@ -76,11 +76,12 @@ describe("CoursesCreatePage tests", () => {
 
     expect(await screen.findByTestId("CourseForm-psId")).toBeInTheDocument();
 
-    const psIdField = screen.getByTestId("CourseForm-psId");
+    const psIdField = document.querySelector("#CourseForm-psId");
     const enrollCdField = screen.getByTestId("CourseForm-enrollCd");
     const submitButton = screen.getByTestId("CourseForm-submit");
 
     fireEvent.change(psIdField, { target: { value: 13 } });
+    localStorage.setItem("CourseForm-psId", "13");
     fireEvent.change(enrollCdField, { target: { value: "08250" } });
 
     expect(submitButton).toBeInTheDocument();
@@ -91,7 +92,7 @@ describe("CoursesCreatePage tests", () => {
 
     // expect(quarterField).toHaveValue("20124");
     //expect(setQuarter).toBeCalledWith("20124"); //need this and axiosMock below?
-
+    expect(localStorage.getItem("CourseForm-psId")).toBe("13");
     expect(axiosMock.history.post[0].params).toEqual({
       psId: "13",
       enrollCd: "08250",
@@ -116,7 +117,7 @@ describe("CoursesCreatePage tests", () => {
 
     expect(await screen.findByTestId("CourseForm-psId")).toBeInTheDocument();
 
-    const psIdField = screen.getByTestId("CourseForm-psId");
+    const psIdField = document.querySelector("#CourseForm-psId");
     const enrollCdField = screen.getByTestId("CourseForm-enrollCd");
     const submitButton = screen.getByTestId("CourseForm-submit");
 
@@ -130,5 +131,32 @@ describe("CoursesCreatePage tests", () => {
     await screen.findByTestId("PSCourseCreate-Error");
     const PSError = screen.getByTestId("PSCourseCreate-Error");
     expect(PSError).toBeInTheDocument();
+  });
+
+  test("localStorage update when schedule exists but !localSearchSchedule", async () => {
+    const queryClient = new QueryClient();
+    const schedules = [
+      {
+        id: "9",
+        name: "test",
+        description: "test",
+        quarter: "W24",
+      },
+    ];
+    //Copied from PersonalSchedulesDetailsPage test
+    axiosMock.onGet("/api/personalschedules/all").reply(200, schedules);
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <CoursesCreatePage />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    expect(
+      await screen.findByTestId("CourseForm-enrollCd"),
+    ).toBeInTheDocument();
+    expect(localStorage.getItem("CourseForm-psId")).toEqual("9");
   });
 });

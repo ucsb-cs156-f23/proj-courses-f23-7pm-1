@@ -2,17 +2,56 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import PersonalScheduleDropdown from "../PersonalSchedules/PersonalScheduleDropdown.js";
+import { useBackend } from "main/utils/useBackend.js";
+import { useState } from "react";
+import { useMemo } from "react";
 
 function CourseForm({ initialCourse, submitAction, buttonLabel = "Create" }) {
   // Stryker disable all
   const {
+    data: schedules,
+    error: _error,
+    status: _status,
+  } = useBackend(
+    ["/api/personalschedules/all"],
+    { method: "GET", url: "/api/personalschedules/all" },
+    [],
+  );
+
+  const memoCourse = useMemo(() => {
+    return { psId: schedules[0]?.id };
+  }, [schedules]);
+
+  const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm({ defaultValues: initialCourse || {} });
+  } = useForm({ defaultValues: initialCourse || memoCourse });
   // Stryker enable all
 
   const navigate = useNavigate();
+
+  const controlId = "CourseForm-psId";
+
+  // if (schedules.length > 0 && localStorage.getItem(controlId) == null) {
+  //   localStorage.setItem(controlId, schedules[0].id);
+  // }
+
+  const localSearchSchedule = localStorage.getItem(controlId);
+
+  const [scheduleState, setScheduleState] = useState(
+    // Stryker disable next-line all : not sure how to test/mock local storage
+    localSearchSchedule || "",
+  );
+
+  if (schedules.length > 0 && !localSearchSchedule) {
+    localStorage.setItem(controlId, schedules[0].id);
+  }
+
+  if (scheduleState) {
+    localStorage.setItem(controlId, scheduleState);
+  }
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -46,20 +85,13 @@ function CourseForm({ initialCourse, submitAction, buttonLabel = "Create" }) {
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Form.Group className="mb-3">
-        <Form.Label htmlFor="psId">Personal Schedule ID</Form.Label>
-        <Form.Control
-          data-testid="CourseForm-psId"
-          id="psId"
-          type="text"
-          isInvalid={Boolean(errors.psId)}
-          {...register("psId", {
-            required: "Personal Schedule ID is required.",
-          })}
+      <Form.Group className="mb-3" data-testid="CourseForm-psId">
+        <PersonalScheduleDropdown
+          schedules={schedules}
+          schedule={scheduleState}
+          setSchedule={setScheduleState}
+          controlId={controlId}
         />
-        <Form.Control.Feedback type="invalid">
-          {errors.psId?.message}
-        </Form.Control.Feedback>
       </Form.Group>
 
       <Button type="submit" data-testid="CourseForm-submit">

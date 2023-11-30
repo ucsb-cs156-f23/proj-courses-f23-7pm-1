@@ -29,10 +29,15 @@ export default function PersonalSchedulesTable({
   );
   // Stryker enable all
 
-  // Stryker disable next-line all : TODO try to make a good test for this
+  // Stryker disable all : TODO try to make a good test for this
   const deleteCallback = async (cell) => {
     deleteMutation.mutate(cell);
+    const id = String(cell.row.values.id);
+    if (localStorage["CourseForm-psId"] === id) {
+      localStorage.removeItem("CourseForm-psId");
+    }
   };
+  // Stryker enable all
 
   const columns = [
     {

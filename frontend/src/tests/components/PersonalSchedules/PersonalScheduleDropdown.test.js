@@ -49,7 +49,7 @@ describe("SingleSubjectDropdown tests", () => {
       <PersonalScheduleDropdown
         schedules={personalScheduleFixtures.threePersonalSchedules}
         schedule={schedule}
-        setSchedule={setSchedule}
+        setschedule={setSchedule}
         controlId="psd2"
       />,
     );
@@ -124,8 +124,8 @@ describe("SingleSubjectDropdown tests", () => {
     const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
     getItemSpy.mockImplementation(() => "1");
 
-    const setScheduleStateSpy = jest.fn();
-    useState.mockImplementation((x) => [x, setScheduleStateSpy]);
+    const setScheduleSpy = jest.fn();
+    useState.mockImplementation((x) => [x, setScheduleSpy]);
 
     render(
       <PersonalScheduleDropdown
@@ -143,8 +143,8 @@ describe("SingleSubjectDropdown tests", () => {
     const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
     getItemSpy.mockImplementation(() => null);
 
-    const setScheduleStateSpy = jest.fn();
-    useState.mockImplementation((x) => [x, setScheduleStateSpy]);
+    const setScheduleSpy = jest.fn();
+    useState.mockImplementation((x) => [x, setScheduleSpy]);
 
     render(
       <PersonalScheduleDropdown
