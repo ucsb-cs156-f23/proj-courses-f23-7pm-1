@@ -1,4 +1,3 @@
-
 title: Documentation
 description: >- # this means to ignore newlines until "baseurl:"
   When reviewing a PR for this repo, you can see what the documentation,
@@ -18,9 +17,7 @@ collections:
     permalink: /branches/:path/
 
 repo_name: "TBD"
-
-
 repo: ucsb-cs156-f23/proj-courses-f23-7pm-1
 owner: ucsb-cs156-f23
 repo_name: proj-courses-f23-7pm-1
-pull_requests: [{"author":{"id":"MDQ6VXNlcjczNDExMjEw","is_bot":false,"login":"mageswarankk","name":"Karankumar Mageswaran"},"headRefName":"km-pscoursecreate-dropdown","number":36,"title":"Added Dropdown to choose Schedule to Add Course","url":"https://github.com/ucsb-cs156-f23/proj-courses-f23-7pm-1/pull/36"},{"author":{"id":"MDQ6VXNlcjg2OTg3NzQ0","is_bot":false,"login":"rdoumeth","name":""},"headRefName":"InstructorSearchBranch","number":20,"title":"Fix sections not showing up on instructor search","url":"https://github.com/ucsb-cs156-f23/proj-courses-f23-7pm-1/pull/20"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjczNDExMjEw","is_bot":false,"login":"mageswarankk","name":"Karankumar Mageswaran"},"headRefName":"km-pscoursecreate-dropdown","number":37,"title":"Added Dropdown to choose Schedule to Add Course","url":"https://github.com/ucsb-cs156-f23/proj-courses-f23-7pm-1/pull/37"},{"author":{"id":"MDQ6VXNlcjg2OTg3NzQ0","is_bot":false,"login":"rdoumeth","name":""},"headRefName":"InstructorSearchBranch","number":20,"title":"Fix sections not showing up on instructor search","url":"https://github.com/ucsb-cs156-f23/proj-courses-f23-7pm-1/pull/20"}]
