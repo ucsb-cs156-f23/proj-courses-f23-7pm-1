@@ -12,6 +12,9 @@ export default function InstructorSearchTableBase({
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable(
       {
+        initialState: {
+          hiddenColumns: ["isSection"]
+        },
         columns,
         data,
       },
