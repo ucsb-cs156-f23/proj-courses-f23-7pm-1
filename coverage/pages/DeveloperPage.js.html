@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/AdminUsersPage.js</title>
+    <title>Code coverage report for pages/DeveloperPage.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">pages</a> AdminUsersPage.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">pages</a> DeveloperPage.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -93,7 +93,8 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -104,6 +105,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,34 +127,35 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import UsersTable from "main/components/Users/UsersTable";
+import DeveloperTable from "main/components/Developer/DeveloperTable";
 &nbsp;
 import { useBackend } from "main/utils/useBackend";
-const AdminUsersPage = () =&gt; {
+const DeveloperPage = () =&gt; {
   const {
-    data: users,
+    data: commits,
     error: _error,
     status: _status,
   } = useBackend(
     // Stryker disable next-line all : don't test internal caching of React Query
-    ["/api/admin/users"],
+    ["/api/systemInfo"],
     {
       // Stryker disable next-line StringLiteral : GET is default, so replacing with "" is an equivalent mutation
       method: "GET",
-      url: "/api/admin/users",
+      url: "/api/systemInfo",
     },
+    // Stryker disable next-line all
     [],
   );
 &nbsp;
   return (
     &lt;BasicLayout&gt;
-      &lt;h2&gt;Users&lt;/h2&gt;
-      &lt;UsersTable users={users} /&gt;
+      &lt;h2&gt;Commits&lt;/h2&gt;
+      &lt;DeveloperTable commits={commits} /&gt;
     &lt;/BasicLayout&gt;
   );
 };
 &nbsp;
-export default AdminUsersPage;
+export default DeveloperPage;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
