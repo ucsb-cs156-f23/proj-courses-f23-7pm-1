@@ -1,11 +1,13 @@
 import React from "react";
+// import { useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import PersonalScheduleDropdown from "../PersonalSchedules/PersonalScheduleDropdown.js";
 import { useBackend } from "main/utils/useBackend";
 
-function CourseForm({ initialCourse, submitAction, buttonLabel = "Create" }) {
+
+function CourseForm({ initialCourse, controlId, submitAction, scheduleState, setScheduleState, buttonLabel = "Create" }) {
   // Stryker disable all
   const {
     register,
@@ -21,11 +23,12 @@ function CourseForm({ initialCourse, submitAction, buttonLabel = "Create" }) {
     error: _error,
     status: _status,
   } = useBackend(
-    // Stryker disable next-line all : don't test internal caching of React Query
+    // Stryker disable next-line all 
     ["/api/personalschedules/all"],
     { method: "GET", url: "/api/personalschedules/all" },
     [],
   );
+
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -59,29 +62,12 @@ function CourseForm({ initialCourse, submitAction, buttonLabel = "Create" }) {
         </Form.Control.Feedback>
       </Form.Group>
 
-      {/* <Form.Group className="mb-3">
-        <Form.Label htmlFor="psId">Personal Schedule ID</Form.Label>
-        <Form.Control
-          data-testid="CourseForm-psId"
-          id="psId"
-          type="text"
-          isInvalid={Boolean(errors.psId)}
-          {...register("psId", {
-            required: "Personal Schedule ID is required.",
-          })}
-        />
-        <Form.Control.Feedback type="invalid">
-          {errors.psId?.message}
-        </Form.Control.Feedback>
-      </Form.Group> */}
-
       <Form.Group className="mb-3">
         <PersonalScheduleDropdown
           schedules={schedules}
-          schedule={initialCourse ? initialCourse.psId : ""} // Pass the initial value if available
-          setSchedule={(selectedSchedule) => register("psId").onChange(selectedSchedule)} // Update the form value
-          controlId="psIdDropdown" // Unique identifier for the dropdown
-          label="Schedule"
+          scheduleState={scheduleState}
+          setScheduleState={setScheduleState}
+          controlId={controlId}
         />
       </Form.Group>
 

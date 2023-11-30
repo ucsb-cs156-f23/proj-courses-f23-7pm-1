@@ -3,6 +3,7 @@ import CourseForm from "main/components/Courses/CourseForm";
 import { Navigate } from "react-router-dom";
 import { useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 export default function CoursesCreatePage() {
   const objectToAxiosParams = (course) => ({
@@ -10,9 +11,17 @@ export default function CoursesCreatePage() {
     method: "POST",
     params: {
       enrollCd: course.enrollCd,
-      psId: course.psId,
+      psId: scheduleState,
     },
   });
+
+  const controlId = "CoursesCreatePage";
+  const localSearchSchedule = localStorage.getItem(controlId);
+
+  const [scheduleState, setScheduleState] = useState(
+    // Stryker disable next-line all : not sure how to test/mock local storage
+    localSearchSchedule || "",
+  );
 
   const onSuccess = (course) => {
     toast(`New course Created - id: ${course.id} enrollCd: ${course.enrollCd}`);
@@ -28,6 +37,7 @@ export default function CoursesCreatePage() {
   const { isSuccess } = mutation;
 
   const onSubmit = async (data) => {
+    // console.log("scheduleState = ", scheduleState)
     mutation.mutate(data);
   };
 
@@ -40,7 +50,7 @@ export default function CoursesCreatePage() {
         <div className="pt-2">
           <h1>Create New Course</h1>
 
-          <CourseForm submitAction={onSubmit} />
+          <CourseForm submitAction={onSubmit} controlId={controlId} scheduleState={scheduleState} setScheduleState={setScheduleState} />
           <p data-testid="PSCourseCreate-Error">
             Error: {mutation.error.response.data?.message}
           </p>
