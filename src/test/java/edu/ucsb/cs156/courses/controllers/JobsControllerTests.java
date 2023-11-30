@@ -18,6 +18,7 @@ import edu.ucsb.cs156.courses.collections.ConvertedSectionCollection;
 import edu.ucsb.cs156.courses.entities.Job;
 import edu.ucsb.cs156.courses.entities.User;
 import edu.ucsb.cs156.courses.jobs.UpdateCourseDataJobFactory;
+import edu.ucsb.cs156.courses.jobs.UpdateFinalsDataJobFactory;
 import edu.ucsb.cs156.courses.jobs.UploadGradeDataJobFactory;
 import edu.ucsb.cs156.courses.repositories.JobsRepository;
 import edu.ucsb.cs156.courses.repositories.UserRepository;
@@ -57,6 +58,8 @@ public class JobsControllerTests extends ControllerTestCase {
   @MockBean UCSBCurriculumService ucsbCurriculumService;
 
   @MockBean UpdateCourseDataJobFactory updateCourseDataJobFactory;
+
+  @MockBean UpdateFinalsDataJobFactory updateFinalsDataJobFactory;
 
   @MockBean ConvertedSectionCollection convertedSectionCollection;
 
@@ -274,6 +277,26 @@ public class JobsControllerTests extends ControllerTestCase {
     MvcResult response =
         mockMvc
             .perform(post("/api/jobs/launch/uploadGradeData").with(csrf()))
+            .andExpect(status().isOk())
+            .andReturn();
+
+    // assert
+    String responseString = response.getResponse().getContentAsString();
+    log.info("responseString={}", responseString);
+    Job jobReturned = objectMapper.readValue(responseString, Job.class);
+
+    assertNotNull(jobReturned.getStatus());
+  }
+
+  @WithMockUser(roles = {"ADMIN"})
+  @Test
+  public void admin_can_launch_update_finals_data_job() throws Exception {
+    // act
+    MvcResult response =
+        mockMvc
+            .perform(
+                post("/api/jobs/launch/updateFinalsData?start_quarterYYYYQ=20221&end_quarterYYYYQ=20222")
+                    .with(csrf()))
             .andExpect(status().isOk())
             .andReturn();
 
