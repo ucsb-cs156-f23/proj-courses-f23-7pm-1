@@ -38,6 +38,7 @@ export default function InstructorSearchTable({ sections }) {
     {
       // Stryker disable next-line StringLiteral: this column is hidden, very hard to test
       Header: "Is Section?",
+      // Stryker disable next-line all: this column is hidden, very hard to test
       accessor: (row) => isSection(row.section.section),
       // Stryker disable next-line StringLiteral: this column is hidden, very hard to test
       id: "isSection",
