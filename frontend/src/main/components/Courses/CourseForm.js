@@ -1,11 +1,9 @@
 import React from "react";
-// import { useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import PersonalScheduleDropdown from "../PersonalSchedules/PersonalScheduleDropdown.js";
 import { useBackend } from "main/utils/useBackend";
-
 
 function CourseForm({ initialCourse, controlId, submitAction, scheduleState, setScheduleState, buttonLabel = "Create" }) {
   // Stryker disable all
@@ -28,7 +26,6 @@ function CourseForm({ initialCourse, controlId, submitAction, scheduleState, set
     { method: "GET", url: "/api/personalschedules/all" },
     [],
   );
-
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>

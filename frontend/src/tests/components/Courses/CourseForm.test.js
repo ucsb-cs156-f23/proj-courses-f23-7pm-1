@@ -19,7 +19,7 @@ describe("CourseForm tests", () => {
       </Router>,
     );
 
-    expect(await screen.findByText(/Personal Schedule ID/)).toBeInTheDocument();
+    expect(await screen.findByText(/Schedule/)).toBeInTheDocument();
     expect(screen.getByText(/Enrollment Code/)).toBeInTheDocument();
     expect(screen.getByText(/Create/)).toBeInTheDocument();
   });

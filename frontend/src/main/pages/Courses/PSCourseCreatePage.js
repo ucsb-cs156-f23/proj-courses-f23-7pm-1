@@ -15,12 +15,12 @@ export default function CoursesCreatePage() {
     },
   });
 
-  const controlId = "CoursesCreatePage";
+  const controlId = "CourseCreatePage";
   const localSearchSchedule = localStorage.getItem(controlId);
 
   const [scheduleState, setScheduleState] = useState(
     // Stryker disable next-line all : not sure how to test/mock local storage
-    localSearchSchedule || "",
+    localSearchSchedule || "0",
   );
 
   const onSuccess = (course) => {
