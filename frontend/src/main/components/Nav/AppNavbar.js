@@ -136,6 +136,12 @@ export default function AppNavbar({
                     Users
                   </NavDropdown.Item>
                   <NavDropdown.Item
+                    href="/developer"
+                    data-testid="appnavbar-developer"
+                  >
+                    Developer
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
                     href="/admin/personalschedule"
                     data-testid="appnavbar-admin-personalschedule"
                   >
