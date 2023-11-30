@@ -188,7 +188,6 @@ describe("CoursesCreatePage tests", () => {
     expect(mockNavigate).toBeCalledWith({ to: "/courses/list" });
   });
 
-
   test("when you input incorrect information, we get an error", async () => {
     const queryClient = new QueryClient();
 
