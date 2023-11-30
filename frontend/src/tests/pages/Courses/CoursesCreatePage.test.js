@@ -132,4 +132,31 @@ describe("CoursesCreatePage tests", () => {
     const PSError = screen.getByTestId("PSCourseCreate-Error");
     expect(PSError).toBeInTheDocument();
   });
+
+  test("Test localStorage update when schedule exists but !localSearchSchedule", async () => {
+    const queryClient = new QueryClient();
+    const schedules = [
+      {
+        id: "9",
+        name: "test",
+        description: "test",
+        quarter: "W24",
+      },
+    ];
+    //Copied from PersonalSchedulesDetailsPage test
+    axiosMock.onGet("/api/personalschedules/all").reply(200, schedules);
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <CoursesCreatePage />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    expect(
+      await screen.findByTestId("CourseForm-enrollCd"),
+    ).toBeInTheDocument();
+    expect(localStorage.getItem("CourseForm-psId")).toEqual("9");
+  });
 });

@@ -19,8 +19,10 @@ function CourseForm({ initialCourse, submitAction, buttonLabel = "Create" }) {
     [],
   );
 
-  const memoCourse = useMemo(() => { return {psId: schedules[0]?.id} }, [schedules]);
-  
+  const memoCourse = useMemo(() => {
+    return { psId: schedules[0]?.id };
+  }, [schedules]);
+
   const {
     register,
     formState: { errors },
@@ -43,7 +45,7 @@ function CourseForm({ initialCourse, submitAction, buttonLabel = "Create" }) {
     localSearchSchedule || "",
   );
 
-  if (schedules.length > 0) {
+  if (schedules.length > 0 && !localSearchSchedule) {
     localStorage.setItem(controlId, schedules[0].id);
   }
 
