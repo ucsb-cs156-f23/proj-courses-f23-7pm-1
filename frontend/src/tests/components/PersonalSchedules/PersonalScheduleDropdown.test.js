@@ -124,8 +124,8 @@ describe("SingleSubjectDropdown tests", () => {
     const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
     getItemSpy.mockImplementation(() => "1");
 
-    const setScheduleSpy = jest.fn();
-    useState.mockImplementation((x) => [x, setScheduleSpy]);
+    const setScheduleStateSpy = jest.fn();
+    useState.mockImplementation((x) => [x, setScheduleStateSpy]);
 
     render(
       <PersonalScheduleDropdown
@@ -143,8 +143,8 @@ describe("SingleSubjectDropdown tests", () => {
     const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
     getItemSpy.mockImplementation(() => null);
 
-    const setScheduleSpy = jest.fn();
-    useState.mockImplementation((x) => [x, setScheduleSpy]);
+    const setScheduleStateSpy = jest.fn();
+    useState.mockImplementation((x) => [x, setScheduleStateSpy]);
 
     render(
       <PersonalScheduleDropdown
