@@ -34,10 +34,6 @@ function CourseForm({ initialCourse, submitAction, buttonLabel = "Create" }) {
 
   const controlId = "CourseForm-psId";
 
-  // if (schedules.length > 0 && localStorage.getItem(controlId) == null) {
-  //   localStorage.setItem(controlId, schedules[0].id);
-  // }
-
   const localSearchSchedule = localStorage.getItem(controlId);
 
   const [scheduleState, setScheduleState] = useState(
