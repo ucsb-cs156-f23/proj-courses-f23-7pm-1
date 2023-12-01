@@ -102,16 +102,12 @@ describe("CoursesCreatePage tests", () => {
     fireEvent.change(psIdField, { target: { value: 13 } });
     fireEvent.change(enrollCdField, { target: { value: "08250" } });
 
-    // localStorage.setItem("CourseForm-psId", 13);
-
     expect(submitButton).toBeInTheDocument();
 
     fireEvent.click(submitButton);
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
-    // expect(quarterField).toHaveValue("20124");
-    //expect(setQuarter).toBeCalledWith("20124"); //need this and axiosMock below?
     expect(axiosMock.history.post[0].params).toEqual({
       psId: "13",
       enrollCd: "08250",
@@ -175,8 +171,6 @@ describe("CoursesCreatePage tests", () => {
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
-    // expect(quarterField).toHaveValue("20124");
-    //expect(setQuarter).toBeCalledWith("20124"); //need this and axiosMock below?
     expect(axiosMock.history.post[0].params).toEqual({
       psId: "13",
       enrollCd: "08250",
