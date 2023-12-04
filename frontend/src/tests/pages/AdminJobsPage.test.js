@@ -181,4 +181,41 @@ describe("AdminJobsPage tests", () => {
       "/api/jobs/launch/updateQuarterCourses?quarterYYYYQ=20211",
     );
   });
+
+  test("user can submit the update finals data job", async () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <AdminJobsPage />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    expect(
+      await screen.findByText("Update Final Exam Info"),
+    ).toBeInTheDocument();
+
+    const updateFinalsButton = screen.getByText("Update Final Exam Info");
+    expect(updateFinalsButton).toBeInTheDocument();
+    updateFinalsButton.click();
+
+    expect(await screen.findByTestId("TestJobForm-fail")).toBeInTheDocument();
+
+    const submitButton = screen.getByTestId("updateFinals");
+
+    const startQuarter = screen.getByLabelText("Start Quarter");
+    userEvent.selectOptions(startQuarter, "20211");
+    const endQuarter = screen.getByLabelText("End Quarter");
+    userEvent.selectOptions(endQuarter, "20214");
+
+    expect(submitButton).toBeInTheDocument();
+
+    submitButton.click();
+
+    await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
+
+    expect(axiosMock.history.post[0].url).toBe(
+      "/api/jobs/launch/updateFinalsData?start_quarterYYYYQ=20211&end_quarterYYYYQ=20214",
+    );
+  });
 });
