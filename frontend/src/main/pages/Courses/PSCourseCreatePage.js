@@ -15,7 +15,14 @@ export default function CoursesCreatePage() {
   });
 
   const onSuccess = (course) => {
-    toast(`New course Created - id: ${course.id} enrollCd: ${course.enrollCd}`);
+    toast(
+      `New course Created - id: ${course[0].id} enrollCd: ${course[0].enrollCd}`,
+    );
+    if (course[1]) {
+      toast(
+        `New course Created - id: ${course[1].id} enrollCd: ${course[1].enrollCd}`,
+      );
+    }
   };
 
   const mutation = useBackendMutation(
@@ -28,7 +35,12 @@ export default function CoursesCreatePage() {
   const { isSuccess } = mutation;
 
   const onSubmit = async (data) => {
-    mutation.mutate(data);
+    const psId = {
+      psId: localStorage["CourseForm-psId"],
+    };
+    const dataFinal = Object.assign(data, psId);
+    console.log(dataFinal);
+    mutation.mutate(dataFinal);
   };
 
   if (isSuccess) {

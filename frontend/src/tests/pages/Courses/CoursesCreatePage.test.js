@@ -58,13 +58,30 @@ describe("CoursesCreatePage tests", () => {
 
   test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
     const queryClient = new QueryClient();
-    const courses = {
-      id: "17",
-      psId: 13,
-      enrollCd: "08250",
-    };
+    const courses = [
+      {
+        id: "17",
+        psId: 13,
+        enrollCd: "08250",
+      },
+      {
+        id: "18",
+        psId: 13,
+        enrollCd: "08251",
+      },
+    ];
 
     axiosMock.onPost("/api/courses/post").reply(202, courses);
+
+    const schedules = [
+      {
+        id: "13",
+        name: "test",
+        description: "test",
+        quarter: "W24",
+      },
+    ];
+    axiosMock.onGet("/api/personalschedules/all").reply(200, schedules);
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -74,9 +91,11 @@ describe("CoursesCreatePage tests", () => {
       </QueryClientProvider>,
     );
 
-    expect(await screen.findByTestId("CourseForm-psId")).toBeInTheDocument();
+    expect(
+      await screen.findByTestId("CourseForm-enrollCd"),
+    ).toBeInTheDocument();
 
-    const psIdField = screen.getByTestId("CourseForm-psId");
+    const psIdField = document.querySelector("#CourseForm-psId");
     const enrollCdField = screen.getByTestId("CourseForm-enrollCd");
     const submitButton = screen.getByTestId("CourseForm-submit");
 
@@ -89,8 +108,68 @@ describe("CoursesCreatePage tests", () => {
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
-    // expect(quarterField).toHaveValue("20124");
-    //expect(setQuarter).toBeCalledWith("20124"); //need this and axiosMock below?
+    expect(axiosMock.history.post[0].params).toEqual({
+      psId: "13",
+      enrollCd: "08250",
+    });
+
+    expect(mockToast).toBeCalledWith(
+      "New course Created - id: 17 enrollCd: 08250",
+    );
+    expect(mockToast).toBeCalledWith(
+      "New course Created - id: 18 enrollCd: 08251",
+    );
+    expect(mockNavigate).toBeCalledWith({ to: "/courses/list" });
+  });
+
+  test("when you fill in the form and hit submit, it makes a request to the backend but with a course with no section", async () => {
+    const queryClient = new QueryClient();
+    const courses = [
+      {
+        id: "17",
+        psId: 13,
+        enrollCd: "08250",
+      },
+    ];
+
+    axiosMock.onPost("/api/courses/post").reply(202, courses);
+
+    const schedules = [
+      {
+        id: "13",
+        name: "test",
+        description: "test",
+        quarter: "W24",
+      },
+    ];
+    axiosMock.onGet("/api/personalschedules/all").reply(200, schedules);
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <CoursesCreatePage />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    expect(
+      await screen.findByTestId("CourseForm-enrollCd"),
+    ).toBeInTheDocument();
+
+    const psIdField = document.querySelector("#CourseForm-psId");
+    const enrollCdField = screen.getByTestId("CourseForm-enrollCd");
+    const submitButton = screen.getByTestId("CourseForm-submit");
+
+    fireEvent.change(psIdField, { target: { value: 13 } });
+    fireEvent.change(enrollCdField, { target: { value: "08250" } });
+
+    // localStorage.setItem("CourseForm-psId", 13);
+
+    expect(submitButton).toBeInTheDocument();
+
+    fireEvent.click(submitButton);
+
+    await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
       psId: "13",
@@ -116,7 +195,7 @@ describe("CoursesCreatePage tests", () => {
 
     expect(await screen.findByTestId("CourseForm-psId")).toBeInTheDocument();
 
-    const psIdField = screen.getByTestId("CourseForm-psId");
+    const psIdField = document.querySelector("#CourseForm-psId");
     const enrollCdField = screen.getByTestId("CourseForm-enrollCd");
     const submitButton = screen.getByTestId("CourseForm-submit");
 
@@ -130,5 +209,31 @@ describe("CoursesCreatePage tests", () => {
     await screen.findByTestId("PSCourseCreate-Error");
     const PSError = screen.getByTestId("PSCourseCreate-Error");
     expect(PSError).toBeInTheDocument();
+  });
+
+  test("localStorage update when schedule exists but !localSearchSchedule", async () => {
+    const queryClient = new QueryClient();
+    const schedules = [
+      {
+        id: "13",
+        name: "test",
+        description: "test",
+        quarter: "W24",
+      },
+    ];
+    axiosMock.onGet("/api/personalschedules/all").reply(200, schedules);
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <CoursesCreatePage />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    expect(
+      await screen.findByTestId("CourseForm-enrollCd"),
+    ).toBeInTheDocument();
+    expect(localStorage.getItem("CourseForm-psId")).toEqual("13");
   });
 });
