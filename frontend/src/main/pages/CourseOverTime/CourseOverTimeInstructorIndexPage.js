@@ -2,7 +2,7 @@ import { useState } from "react";
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import CourseOverTimeInstructorSearchForm from "main/components/BasicCourseSearch/CourseOverTimeInstructorSearchForm";
 import { useBackendMutation } from "main/utils/useBackend";
-import SectionsTable from "main/components/Sections/SectionsTable";
+import InstructorSearchTable from "main/components/InstructorSearch/InstructorSearchTable";
 
 export default function CourseOverTimeInstructorIndexPage() {
   // Stryker disable next-line all : Can't test state because hook is internal
@@ -40,7 +40,7 @@ export default function CourseOverTimeInstructorIndexPage() {
         <CourseOverTimeInstructorSearchForm
           fetchJSON={fetchCourseOverTimeJSON}
         />
-        <SectionsTable sections={courseJSON} />
+        <InstructorSearchTable sections={courseJSON} />
       </div>
     </BasicLayout>
   );
