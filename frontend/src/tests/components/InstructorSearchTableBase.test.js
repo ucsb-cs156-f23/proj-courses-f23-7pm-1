@@ -142,6 +142,10 @@ describe("InstructorSearchTableBase tests", () => {
       />,
     );
 
+    expect(screen.queryByText("Is Section?")).not.toBeInTheDocument();
+    expect(
+      screen.getByTestId("testid-cell-row-1-col-courseInfo.courseId"),
+    ).toBeInTheDocument();
     expect(
       screen.getByTestId("testid-cell-row-0-col-courseInfo.courseId"),
     ).toHaveAttribute(
