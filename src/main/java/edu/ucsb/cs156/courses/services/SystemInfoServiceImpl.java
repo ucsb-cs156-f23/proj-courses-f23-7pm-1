@@ -29,7 +29,7 @@ public class SystemInfoServiceImpl extends SystemInfoService {
   @Value("${app.sourceRepo:https://github.com/ucsb-cs156/proj-courses}")
   private String sourceRepo;
 
-  @Value("${git.commit.id}")
+  @Value("${git.commit.id.full}")
   private String commitSha;
 
   @Value("${git.commit.message.short}")
