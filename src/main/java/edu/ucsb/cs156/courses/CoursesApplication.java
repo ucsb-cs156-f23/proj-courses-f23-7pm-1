@@ -27,8 +27,8 @@ public class CoursesApplication {
   public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
     PropertySourcesPlaceholderConfigurer propsConfig = new PropertySourcesPlaceholderConfigurer();
     propsConfig.setLocation(new ClassPathResource("git.properties"));
-    propsConfig.setIgnoreResourceNotFound(true);
-    propsConfig.setIgnoreUnresolvablePlaceholders(true);
+    // propsConfig.setIgnoreResourceNotFound(true);
+    // propsConfig.setIgnoreUnresolvablePlaceholders(true);
     return propsConfig;
   }
 
