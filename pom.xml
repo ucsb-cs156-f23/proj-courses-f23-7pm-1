@@ -288,7 +288,8 @@
                     <commitIdGenerationMode>full</commitIdGenerationMode>
                     <failOnNoGitDirectory>false</failOnNoGitDirectory>
                     <injectAllReactorProjects>true</injectAllReactorProjects>
-                    <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+                    <useNativeGit>true</useNativeGit>
+                    <dotGitDirectory> /var/lib/jenkins/gitcache/proj-courses-f23-7pm-1.git</dotGitDirectory>
                 </configuration>
             </plugin>
 
