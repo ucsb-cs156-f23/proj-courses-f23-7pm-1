@@ -287,6 +287,7 @@
                     <generateGitPropertiesFilename>./src/main/resources/git.properties</generateGitPropertiesFilename>
                     <commitIdGenerationMode>full</commitIdGenerationMode>
                     <failOnNoGitDirectory>false</failOnNoGitDirectory>
+                    <injectAllReactorProjects>true</injectAllReactorProjects>
                 </configuration>
             </plugin>
 
