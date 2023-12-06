@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f23/proj-courses-f23-7pm-1
 owner: ucsb-cs156-f23
 repo_name: proj-courses-f23-7pm-1
-pull_requests: []
+pull_requests: [{"author":{"id":"MDQ6VXNlcjExMTkwMTc=","is_bot":false,"login":"pconrad","name":"Phill Conrad"},"headRefName":"pc-debug-git-info","number":42,"title":"pc - add debugging output steps to Dockerfile","url":"https://github.com/ucsb-cs156-f23/proj-courses-f23-7pm-1/pull/42"}]
